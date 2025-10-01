@@ -1,11 +1,11 @@
 import NextAuth from "next-auth";
-import { authOptionsSafe } from "@/lib/auth-safe";
+import { authOptionsRobust } from "@/lib/auth-robust";
 import { authOptionsDevelopment } from "@/lib/auth-development";
 
-// Use development auth config if SKIP_GOOGLE_AUTH is set
+// Use robust auth config - no database dependencies in callbacks
 const authOptions = process.env.SKIP_GOOGLE_AUTH === 'true'
   ? authOptionsDevelopment
-  : authOptionsSafe;
+  : authOptionsRobust;
 
 const handler = NextAuth(authOptions);
 
