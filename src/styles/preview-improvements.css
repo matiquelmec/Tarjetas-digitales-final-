@@ -1,0 +1,130 @@
+/* Mejoras para la vista previa de tarjetas */
+
+/* Contenedor de vista previa mejorado */
+.preview-body {
+  background-color: transparent !important; /* Dejar que BusinessCard maneje el fondo */
+  transition: background-color 0.3s ease;
+}
+
+.preview-container {
+  background: transparent !important; /* Sin fondo, BusinessCard lo maneja */
+  min-height: 500px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Específico para el contenedor de fondo de la tarjeta */
+.preview-background-container,
+.page-background-container {
+  background-color: inherit !important;
+  transition: background-color 0.3s ease;
+}
+
+/* Simplificar efectos del holograma */
+.hologram-container.basic {
+  animation: none !important;
+  transform: none !important;
+}
+
+.hologram-container.basic .hologram-particle {
+  display: none;
+}
+
+/* Mejorar consistencia en móvil */
+@media (max-width: 768px) {
+  .preview-body {
+    height: auto !important;
+    max-height: none !important;
+    overflow: visible !important;
+  }
+  
+  .preview-container {
+    padding: 1.5rem 0.75rem !important;
+    min-height: 400px;
+  }
+  
+  /* Ajustar tamaño de tarjeta en móvil */
+  .business-card-container {
+    transform: scale(0.95);
+    transform-origin: top center;
+  }
+}
+
+/* Fondo consistente para todas las vistas */
+.page-background-container {
+  background-color: inherit !important;
+  min-height: 100%;
+  padding: 2rem 1rem;
+}
+
+/* Mejorar contraste del header */
+.glass-card .card-header {
+  background: rgba(0, 0, 0, 0.3) !important;
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+
+/* Simplificar animaciones */
+@keyframes hologramTitlePulse {
+  0%, 100% { opacity: 0.9; }
+  50% { opacity: 1; }
+}
+
+/* Asegurar que el fondo se aplique correctamente */
+.demo-container,
+.preview-wrapper {
+  background-color: inherit !important;
+}
+
+/* Mejorar visibilidad de la tarjeta */
+.business-card {
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Tema moderno por defecto */
+.modern-theme {
+  --card-bg: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  --card-text: #ffffff;
+  --page-bg: #1a1a2e;
+  --button-accent: #fbbf24;
+  --button-hover: #f59e0b;
+}
+
+/* Fix para el fondo en diferentes componentes */
+[data-page-bg] {
+  background-color: var(--page-bg, #1a1a2e) !important;
+}
+
+/* Mejorar transiciones */
+* {
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Desactivar efectos complejos en preview */
+.preview-mode {
+  .particle-system,
+  .floating-shapes,
+  .animated-gradient,
+  .glassmorphism-effect {
+    display: none !important;
+  }
+}
+
+/* Asegurar consistencia de fuentes */
+.business-card {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif !important;
+}
+
+/* Mejorar legibilidad */
+.business-card-content {
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+/* Fix para botones */
+.business-card .btn {
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  transition: all 0.2s ease;
+}

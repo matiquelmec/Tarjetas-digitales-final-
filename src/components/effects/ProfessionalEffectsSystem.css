@@ -1,0 +1,395 @@
+/**
+ * ProfessionalEffectsSystem.css v4.0
+ * Estilos optimizados para efectos profesionales con propósito
+ */
+
+/* ========================================
+   CONTENEDOR BASE 
+   ======================================== */
+.professional-effects-system {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  border-radius: inherit;
+}
+
+/* ========================================
+   CAPAS DEL SISTEMA 
+   ======================================== */
+.professional-effects-background,
+.professional-particles-layer,
+.professional-ambient-layer,
+.professional-content-layer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.professional-content-layer {
+  pointer-events: auto;
+  z-index: 2;
+}
+
+.professional-particles-layer {
+  z-index: 1;
+}
+
+.professional-ambient-layer {
+  z-index: 0;
+}
+
+/* ========================================
+   PARTÍCULAS PROFESIONALES BASE
+   ======================================== */
+.professional-particle {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  pointer-events: none;
+  opacity: var(--particle-opacity, 0.6);
+  transform: scale(var(--particle-scale, 1));
+  animation-delay: var(--particle-delay, 0s);
+  animation-duration: calc(var(--particle-duration, 3s) / var(--particle-speed, 1));
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in-out;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ========================================
+   PERSONALIDAD: EXECUTIVE 
+   ======================================== */
+.professional-effects-executive {
+  --executive-primary: #7986cb;
+  --executive-secondary: rgba(121, 134, 203, 0.2);
+  --executive-glow: rgba(121, 134, 203, 0.4);
+}
+
+.professional-particle-executive {
+  background: radial-gradient(circle, var(--particle-color) 0%, transparent 70%);
+  box-shadow: 
+    0 0 10px var(--executive-glow),
+    0 0 20px var(--executive-glow),
+    inset 0 0 10px var(--executive-primary);
+  animation-name: executive-authority-pulse;
+}
+
+.professional-particle-static {
+  animation-name: executive-static-glow;
+}
+
+.professional-ambient-executive {
+  background: radial-gradient(ellipse at center, var(--executive-secondary) 0%, transparent 70%);
+  animation: executive-ambient-breathe 6s ease-in-out infinite;
+}
+
+.professional-hover-executive {
+  background: radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%), 
+    var(--executive-glow) 0%, transparent 30%);
+  animation: executive-hover-ripple 0.6s ease-out;
+}
+
+/* Animaciones Executive */
+@keyframes executive-authority-pulse {
+  0%, 100% { 
+    opacity: var(--particle-opacity, 0.6);
+    transform: scale(var(--particle-scale, 1)) translateZ(0);
+  }
+  50% { 
+    opacity: calc(var(--particle-opacity, 0.6) * 1.3);
+    transform: scale(calc(var(--particle-scale, 1) * 1.1)) translateZ(0);
+  }
+}
+
+@keyframes executive-static-glow {
+  0%, 100% { 
+    box-shadow: 
+      0 0 10px var(--executive-glow),
+      0 0 20px var(--executive-glow);
+  }
+  50% { 
+    box-shadow: 
+      0 0 15px var(--executive-glow),
+      0 0 30px var(--executive-glow),
+      0 0 40px var(--executive-glow);
+  }
+}
+
+@keyframes executive-ambient-breathe {
+  0%, 100% { opacity: 0.1; transform: scale(1); }
+  50% { opacity: 0.3; transform: scale(1.05); }
+}
+
+@keyframes executive-hover-ripple {
+  0% { opacity: 0; transform: scale(0.8); }
+  50% { opacity: 0.6; transform: scale(1.1); }
+  100% { opacity: 0; transform: scale(1.3); }
+}
+
+/* ========================================
+   PERSONALIDAD: CREATIVE 
+   ======================================== */
+.professional-effects-creative {
+  --creative-primary: #a78bfa;
+  --creative-secondary: rgba(167, 139, 250, 0.2);
+  --creative-glow: rgba(167, 139, 250, 0.5);
+}
+
+.professional-particle-creative {
+  background: linear-gradient(45deg, var(--particle-color), #f472b6);
+  box-shadow: 
+    0 0 15px var(--creative-glow),
+    0 0 25px var(--creative-glow);
+  animation-name: creative-dynamic-dance;
+}
+
+.professional-particle-interactive {
+  cursor: none;
+  animation-name: creative-interactive-float;
+  transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.professional-particle-interactive:hover {
+  transform: scale(calc(var(--particle-scale, 1) * 1.4)) !important;
+  box-shadow: 
+    0 0 20px var(--creative-glow),
+    0 0 40px var(--creative-glow),
+    0 0 60px var(--creative-glow);
+}
+
+.professional-ambient-creative {
+  background: conic-gradient(from 0deg, 
+    var(--creative-secondary) 0%, 
+    transparent 25%, 
+    var(--creative-secondary) 50%, 
+    transparent 75%, 
+    var(--creative-secondary) 100%);
+  animation: creative-ambient-rotate 12s linear infinite;
+}
+
+.professional-hover-creative {
+  background: radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%), 
+    var(--creative-glow) 0%, #f472b6 20%, transparent 40%);
+  animation: creative-hover-burst 0.4s ease-out;
+}
+
+/* Animaciones Creative */
+@keyframes creative-dynamic-dance {
+  0% { 
+    transform: scale(var(--particle-scale, 1)) rotate(0deg) translateZ(0);
+    opacity: var(--particle-opacity, 0.6);
+  }
+  25% { 
+    transform: scale(calc(var(--particle-scale, 1) * 1.2)) rotate(90deg) translateZ(0);
+    opacity: calc(var(--particle-opacity, 0.6) * 1.4);
+  }
+  50% { 
+    transform: scale(calc(var(--particle-scale, 1) * 0.9)) rotate(180deg) translateZ(0);
+    opacity: var(--particle-opacity, 0.6);
+  }
+  75% { 
+    transform: scale(calc(var(--particle-scale, 1) * 1.1)) rotate(270deg) translateZ(0);
+    opacity: calc(var(--particle-opacity, 0.6) * 1.2);
+  }
+  100% { 
+    transform: scale(var(--particle-scale, 1)) rotate(360deg) translateZ(0);
+    opacity: var(--particle-opacity, 0.6);
+  }
+}
+
+@keyframes creative-interactive-float {
+  0%, 100% { 
+    transform: translateY(0) scale(var(--particle-scale, 1));
+  }
+  50% { 
+    transform: translateY(-10px) scale(calc(var(--particle-scale, 1) * 1.05));
+  }
+}
+
+@keyframes creative-ambient-rotate {
+  0% { transform: rotate(0deg); opacity: 0.1; }
+  50% { opacity: 0.2; }
+  100% { transform: rotate(360deg); opacity: 0.1; }
+}
+
+@keyframes creative-hover-burst {
+  0% { opacity: 0; transform: scale(0.5); }
+  30% { opacity: 0.8; transform: scale(1.2); }
+  100% { opacity: 0; transform: scale(2); }
+}
+
+/* ========================================
+   PERSONALIDAD: TRUSTWORTHY 
+   ======================================== */
+.professional-effects-trustworthy {
+  --trustworthy-primary: #10b981;
+  --trustworthy-secondary: rgba(16, 185, 129, 0.15);
+  --trustworthy-glow: rgba(16, 185, 129, 0.4);
+}
+
+.professional-particle-trustworthy {
+  background: radial-gradient(circle, var(--particle-color) 0%, #34d399 50%, transparent 100%);
+  box-shadow: 
+    0 0 12px var(--trustworthy-glow),
+    0 0 24px var(--trustworthy-glow);
+  animation-name: trustworthy-gentle-pulse;
+}
+
+.professional-particle-ambient {
+  animation-name: trustworthy-ambient-flow;
+}
+
+.professional-ambient-trustworthy {
+  background: radial-gradient(ellipse at 30% 70%, var(--trustworthy-secondary) 0%, transparent 50%),
+              radial-gradient(ellipse at 70% 30%, var(--trustworthy-secondary) 0%, transparent 50%);
+  animation: trustworthy-ambient-wave 8s ease-in-out infinite alternate;
+}
+
+.professional-hover-trustworthy {
+  background: radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%), 
+    var(--trustworthy-glow) 0%, transparent 35%);
+  animation: trustworthy-hover-embrace 0.8s ease-out;
+}
+
+/* Animaciones Trustworthy */
+@keyframes trustworthy-gentle-pulse {
+  0%, 100% { 
+    opacity: var(--particle-opacity, 0.6);
+    transform: scale(var(--particle-scale, 1)) translateZ(0);
+  }
+  50% { 
+    opacity: calc(var(--particle-opacity, 0.6) * 1.2);
+    transform: scale(calc(var(--particle-scale, 1) * 1.08)) translateZ(0);
+  }
+}
+
+@keyframes trustworthy-ambient-flow {
+  0% { 
+    transform: translateX(0) translateY(0) scale(var(--particle-scale, 1));
+    opacity: var(--particle-opacity, 0.6);
+  }
+  25% { 
+    transform: translateX(5px) translateY(-3px) scale(calc(var(--particle-scale, 1) * 1.05));
+    opacity: calc(var(--particle-opacity, 0.6) * 1.1);
+  }
+  50% { 
+    transform: translateX(3px) translateY(5px) scale(var(--particle-scale, 1));
+    opacity: var(--particle-opacity, 0.6);
+  }
+  75% { 
+    transform: translateX(-3px) translateY(2px) scale(calc(var(--particle-scale, 1) * 1.03));
+    opacity: calc(var(--particle-opacity, 0.6) * 1.05);
+  }
+  100% { 
+    transform: translateX(0) translateY(0) scale(var(--particle-scale, 1));
+    opacity: var(--particle-opacity, 0.6);
+  }
+}
+
+@keyframes trustworthy-ambient-wave {
+  0% { opacity: 0.08; transform: scale(1) rotate(0deg); }
+  100% { opacity: 0.2; transform: scale(1.1) rotate(2deg); }
+}
+
+@keyframes trustworthy-hover-embrace {
+  0% { opacity: 0; transform: scale(0.9); }
+  40% { opacity: 0.4; transform: scale(1.05); }
+  100% { opacity: 0; transform: scale(1.2); }
+}
+
+/* ========================================
+   INTENSIDADES 
+   ======================================== */
+.professional-intensity-minimal {
+  --intensity-multiplier: 0.7;
+}
+
+.professional-intensity-minimal .professional-particle {
+  animation-duration: calc(var(--particle-duration, 4s) * 1.2);
+}
+
+.professional-intensity-balanced {
+  --intensity-multiplier: 1.0;
+}
+
+.professional-intensity-maximum {
+  --intensity-multiplier: 1.4;
+}
+
+.professional-intensity-maximum .professional-particle {
+  animation-duration: calc(var(--particle-duration, 3s) * 0.8);
+}
+
+/* ========================================
+   RESPONSIVE DESIGN 
+   ======================================== */
+@media (max-width: 768px) {
+  .professional-particle {
+    width: 6px;
+    height: 6px;
+  }
+  
+  .professional-intensity-maximum .professional-particle {
+    width: 7px;
+    height: 7px;
+  }
+  
+  .professional-particle-interactive {
+    /* Reducir interactividad en móvil para mejor performance */
+    animation-duration: calc(var(--particle-duration, 4s) * 1.5);
+  }
+}
+
+@media (max-width: 480px) {
+  .professional-effects-system {
+    /* Reducir efectos en pantallas muy pequeñas */
+    --intensity-multiplier: 0.6;
+  }
+  
+  .professional-particle {
+    width: 5px;
+    height: 5px;
+    opacity: calc(var(--particle-opacity, 0.6) * 0.8);
+  }
+}
+
+/* ========================================
+   ACCESIBILIDAD 
+   ======================================== */
+@media (prefers-reduced-motion: reduce) {
+  .professional-particle {
+    animation: none !important;
+    opacity: calc(var(--particle-opacity, 0.6) * 0.5);
+  }
+  
+  .professional-ambient-layer {
+    animation: none !important;
+    opacity: 0.05;
+  }
+  
+  .professional-hover-effect {
+    animation: none !important;
+  }
+}
+
+/* ========================================
+   PERFORMANCE OPTIMIZATION
+   ======================================== */
+.professional-effects-system * {
+  will-change: auto;
+  backface-visibility: hidden;
+  transform: translateZ(0);
+}
+
+.professional-particle {
+  transform-origin: center center;
+  will-change: transform, opacity;
+}
+
+.professional-effects-system:hover .professional-particle {
+  will-change: transform, opacity, box-shadow;
+}

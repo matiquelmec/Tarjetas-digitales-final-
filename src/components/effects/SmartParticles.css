@@ -1,0 +1,333 @@
+/**
+ * SmartParticles v3.0 - CSS Animations
+ * Sistema de partículas simplificado que aporta valor real
+ */
+
+/* Contenedor base */
+.smart-particles-container {
+  position: relative;
+  overflow: visible;
+}
+
+.smart-particles-layer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.smart-particles-content {
+  position: relative;
+  z-index: 1;
+}
+
+/* Partícula base mejorada */
+.smart-particle {
+  position: absolute;
+  width: var(--particle-size, 8px);
+  height: var(--particle-size, 8px);
+  pointer-events: none;
+  will-change: transform, opacity;
+  z-index: 5;
+  overflow: visible;
+}
+
+/* Núcleo de la partícula */
+.smart-particle::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle at 30% 30%,
+    rgba(255, 255, 255, 0.8),
+    var(--particle-color, #60a5fa) 30%,
+    var(--particle-color, #60a5fa) 100%
+  );
+  box-shadow: inset 0 0 6px rgba(255, 255, 255, 0.3);
+}
+
+/* Glow exterior */
+.smart-particle::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 200%;
+  height: 200%;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    var(--particle-color, #60a5fa) 0%,
+    rgba(96, 165, 250, 0.4) 30%,
+    rgba(96, 165, 250, 0.1) 60%,
+    transparent 100%
+  );
+  opacity: 0.8;
+  animation: pulseGlow 2s ease-in-out infinite alternate;
+}
+
+@keyframes pulseGlow {
+  0% {
+    opacity: 0.4;
+    transform: translate(-50%, -50%) scale(0.8);
+  }
+  100% {
+    opacity: 0.8;
+    transform: translate(-50%, -50%) scale(1.2);
+  }
+}
+
+/* Comportamiento: Static (Glow profesional mejorado) */
+.smart-particle-static {
+  animation: staticGlow var(--particle-duration, 3s) infinite ease-in-out;
+  animation-delay: var(--particle-delay, 0s);
+}
+
+/* Forma diamante para partículas estáticas */
+.smart-particle-static::before {
+  transform: rotate(45deg);
+  border-radius: 20%;
+}
+
+.smart-particle-static::after {
+  animation: 
+    pulseGlow 2s ease-in-out infinite alternate,
+    staticRotate 8s linear infinite;
+}
+
+@keyframes staticGlow {
+  0%, 100% {
+    transform: scale(1) rotate(0deg);
+  }
+  50% {
+    transform: scale(1.1) rotate(180deg);
+  }
+}
+
+@keyframes staticRotate {
+  from {
+    transform: translate(-50%, -50%) rotate(0deg) scale(1);
+  }
+  to {
+    transform: translate(-50%, -50%) rotate(360deg) scale(1.1);
+  }
+}
+
+/* Comportamiento: Ambient (Flotación elegante mejorada) */
+.smart-particle-ambient {
+  animation: ambientFloat var(--particle-duration, 4s) infinite ease-in-out;
+  animation-delay: var(--particle-delay, 0s);
+}
+
+/* Forma hexágono para partículas ambientales */
+.smart-particle-ambient::before {
+  clip-path: polygon(50% 0%, 93.3% 25%, 93.3% 75%, 50% 100%, 6.7% 75%, 6.7% 25%);
+  border-radius: 0;
+}
+
+.smart-particle-ambient::after {
+  animation: 
+    pulseGlow 3s ease-in-out infinite alternate,
+    ambientOrbit 12s linear infinite;
+}
+
+@keyframes ambientFloat {
+  0%, 100% {
+    transform: translateY(0px) translateX(0px) scale(0.9) rotate(0deg);
+  }
+  25% {
+    transform: translateY(-20px) translateX(8px) scale(1.1) rotate(90deg);
+  }
+  50% {
+    transform: translateY(-10px) translateX(15px) scale(1) rotate(180deg);
+  }
+  75% {
+    transform: translateY(-25px) translateX(-8px) scale(1.2) rotate(270deg);
+  }
+}
+
+@keyframes ambientOrbit {
+  from {
+    transform: translate(-50%, -50%) rotate(0deg) scale(0.8);
+  }
+  to {
+    transform: translate(-50%, -50%) rotate(-360deg) scale(1);
+  }
+}
+
+/* Comportamiento: Interactive (Respuesta magnética mejorada) */
+.smart-particle-interactive {
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  animation: interactiveIdle var(--particle-duration, 2s) infinite ease-in-out;
+  animation-delay: var(--particle-delay, 0s);
+}
+
+/* Forma estrella para partículas interactivas */
+.smart-particle-interactive::before {
+  clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+  border-radius: 0;
+}
+
+.smart-particle-interactive::after {
+  animation: 
+    pulseGlow 1.5s ease-in-out infinite alternate,
+    interactiveSpark 4s linear infinite;
+}
+
+@keyframes interactiveIdle {
+  0%, 100% {
+    transform: scale(0.9) rotate(0deg);
+  }
+  25% {
+    transform: scale(1.1) rotate(90deg);
+  }
+  50% {
+    transform: scale(1.2) rotate(180deg);
+  }
+  75% {
+    transform: scale(1) rotate(270deg);
+  }
+}
+
+@keyframes interactiveSpark {
+  0%, 90%, 100% {
+    transform: translate(-50%, -50%) scale(1) rotate(0deg);
+    opacity: 0.7;
+  }
+  5%, 15%, 25%, 35% {
+    transform: translate(-50%, -50%) scale(1.5) rotate(180deg);
+    opacity: 1;
+  }
+}
+
+/* Estados interactivos mejorados */
+.smart-particles-container.smart-particles-interactive:hover .smart-particle-interactive {
+  animation: interactiveActive 0.8s infinite ease-in-out;
+}
+
+.smart-particles-container.smart-particles-interactive:hover .smart-particle-interactive::after {
+  animation: 
+    pulseGlow 0.5s ease-in-out infinite alternate,
+    interactiveSpark 1s linear infinite;
+}
+
+@keyframes interactiveActive {
+  0%, 100% {
+    transform: scale(1.3) rotate(0deg);
+  }
+  50% {
+    transform: scale(1.8) rotate(360deg);
+  }
+}
+
+/* Efecto de hover para modo interactivo */
+.smart-particles-hover-effect {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(
+    circle at 50% 50%,
+    rgba(96, 165, 250, 0.1) 0%,
+    transparent 70%
+  );
+  pointer-events: none;
+  z-index: 0;
+  animation: hoverGlow 1s ease-out;
+}
+
+@keyframes hoverGlow {
+  0% {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Optimizaciones para mobile */
+@media (max-width: 768px) {
+  .smart-particle {
+    --particle-size: 4px;
+  }
+  
+  .smart-particle-static {
+    box-shadow: 
+      0 0 6px var(--particle-color, #60a5fa),
+      0 0 12px rgba(96, 165, 250, 0.2);
+  }
+  
+  .smart-particle-ambient {
+    opacity: 0.3;
+  }
+  
+  @keyframes ambientFloat {
+    0%, 100% {
+      transform: translateY(0px) translateX(0px) scale(0.8);
+    }
+    50% {
+      transform: translateY(-8px) translateX(3px) scale(0.9);
+    }
+  }
+}
+
+/* Respect user motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  .smart-particle {
+    animation: none !important;
+    opacity: 0.4 !important;
+    transform: none !important;
+  }
+  
+  .smart-particles-hover-effect {
+    display: none;
+  }
+}
+
+/* Colores por tema (CSS variables) */
+.smart-particles-theme-diamond {
+  --particle-color: #7986cb;
+}
+
+.smart-particles-theme-emerald {
+  --particle-color: #10b981;
+}
+
+.smart-particles-theme-ruby {
+  --particle-color: #ef4444;
+}
+
+.smart-particles-theme-sapphire {
+  --particle-color: #3b82f6;
+}
+
+.smart-particles-theme-gold {
+  --particle-color: #fbbf24;
+}
+
+.smart-particles-theme-professional {
+  --particle-color: #60a5fa;
+}
+
+.smart-particles-theme-medical {
+  --particle-color: #06b6d4;
+}
+
+.smart-particles-theme-legal {
+  --particle-color: #10b981;
+}
+
+.smart-particles-theme-creative {
+  --particle-color: #a78bfa;
+}

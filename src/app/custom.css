@@ -1,0 +1,413 @@
+/* Regla para que el canvas de partículas no intercepte los clics */
+#tsparticles canvas {
+  pointer-events: none !important;
+}
+
+/* Estilos para unificar los iconos dentro de los botones y enlaces */
+.icon {
+  width: 1.2em; /* Ancho unificado para los iconos */
+  height: 1.2em; /* Alto unificado para los iconos */
+  margin-right: 0.75em; /* Espacio entre el icono y el texto */
+  vertical-align: middle; /* Alineación vertical con el texto */
+}
+
+/* Animación sutil de entrada */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Estilos para la tarjeta de presentación - OPTIMIZADA PARA CONVERSIÓN */
+.business-card-custom {
+  max-width: 480px; /* +80px más ancho para aprovechar espacio horizontal */
+  margin: auto; /* Centrar la tarjeta horizontalmente */
+}
+
+/* Eliminar espacios negros innecesarios en el fondo */
+.page-background-container {
+  min-height: 100vh !important; /* Mantener altura completa */
+  display: flex !important;
+  align-items: flex-start !important; /* Alinear arriba en lugar de centro */
+  justify-content: center !important;
+  padding-top: 2rem !important;
+  padding-bottom: 2rem !important;
+}
+
+/* Estilos específicos para modo preview - DIMENSIONES GOLDEN RATIO */
+.preview-background-container .business-card-custom {
+  max-width: 520px !important; /* Más ancho para mejor aprovechamiento */
+  width: 95% !important; /* Utilizar más espacio del contenedor */
+  min-height: 380px !important; /* -220px más compacto = mejor above-the-fold */
+  margin: 0 auto !important; /* Centrado perfecto */
+}
+
+/* Optimización del contenedor de preview */
+.preview-card-container {
+  height: 100% !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 1rem !important;
+}
+
+/* Mejoras visuales para el preview */
+.preview-background-container {
+  transform: scale(1) !important;
+  transition: all 0.3s ease !important;
+}
+
+/* Responsive adjustments for preview - OPTIMIZADO PARA CONVERSIÓN */
+@media (max-width: 1200px) {
+  .preview-background-container .business-card-custom {
+    max-width: 480px !important;
+    min-height: 350px !important; /* Más compacto */
+  }
+}
+
+@media (max-width: 992px) {
+  .preview-background-container .business-card-custom {
+    max-width: 450px !important; /* Más ancho en tablets */
+    min-height: 320px !important; /* Más compacto */
+    width: 98% !important;
+  }
+  
+  .preview-card-container {
+    padding: 0.5rem !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .preview-background-container .business-card-custom {
+    max-width: 360px !important; /* +20px más ancho en mobile */
+    min-height: 280px !important; /* -170px más compacto = mejor UX móvil */
+    width: 100% !important;
+  }
+}
+
+/* ============================================ */
+/* SISTEMA DE CONTRASTE UNIFICADO */
+/* ============================================ */
+
+/* Clases de texto para fondos con gradiente/glass */
+.text-gradient-primary {
+  color: #ffffff !important;
+}
+
+.text-gradient-secondary {
+  color: rgba(255, 255, 255, 0.9) !important;
+}
+
+.text-gradient-muted {
+  color: rgba(255, 255, 255, 0.75) !important;
+}
+
+.text-gradient-hint {
+  color: rgba(255, 255, 255, 0.65) !important;
+}
+
+/* Clases de texto para fondos sólidos claros */
+.text-solid-light-primary {
+  color: #1a1a1a !important;
+}
+
+.text-solid-light-secondary {
+  color: #2d2d2d !important;
+}
+
+.text-solid-light-muted {
+  color: #6c757d !important;
+}
+
+.text-solid-light-hint {
+  color: #9ca3af !important;
+}
+
+/* Clases de texto para fondos sólidos oscuros */
+.text-solid-dark-primary {
+  color: #ffffff !important;
+}
+
+.text-solid-dark-secondary {
+  color: #f8f9fa !important;
+}
+
+.text-solid-dark-muted {
+  color: #dee2e6 !important;
+}
+
+.text-solid-dark-hint {
+  color: #adb5bd !important;
+}
+
+/* Estilos para glass cards con mejor contraste */
+.glass-card .text-dark {
+  color: #ffffff !important;
+}
+
+.glass-card .text-muted {
+  color: rgba(255, 255, 255, 0.75) !important;
+}
+
+.glass-card .text-secondary {
+  color: rgba(255, 255, 255, 0.9) !important;
+}
+
+/* Excepción: elementos con fondo sólido blanco mantienen colores oscuros */
+.glass-card .stat-badge .text-dark,
+.glass-card .card-item .text-dark {
+  color: #1a1a1a !important;
+}
+
+.glass-card .stat-badge .text-muted,
+.glass-card .card-item .text-muted {
+  color: #6c757d !important;
+}
+
+.glass-card .stat-badge .text-secondary,
+.glass-card .card-item .text-secondary {
+  color: #2d2d2d !important;
+}
+
+/* Botones con contraste automático */
+.btn-auto-contrast {
+  transition: all 0.3s ease;
+}
+
+.btn-auto-contrast:focus,
+.btn-auto-contrast:focus-visible {
+  outline: 2px solid rgba(255, 255, 255, 0.8);
+  outline-offset: 2px;
+}
+
+/* Inputs con mejor contraste */
+.form-control-glass {
+  background: rgba(255, 255, 255, 0.1) !important;
+  border: 1px solid rgba(255, 255, 255, 0.3) !important;
+  color: #ffffff !important;
+  backdrop-filter: blur(5px);
+}
+
+.form-control-glass::placeholder {
+  color: rgba(255, 255, 255, 0.7) !important;
+}
+
+.form-control-glass:focus {
+  background: rgba(255, 255, 255, 0.15) !important;
+  border-color: rgba(255, 255, 255, 0.5) !important;
+  box-shadow: 0 0 0 0.2rem rgba(255, 255, 255, 0.25) !important;
+  color: #ffffff !important;
+}
+
+/* Alerts con mejor contraste */
+.alert-glass {
+  background: rgba(255, 255, 255, 0.1) !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  backdrop-filter: blur(10px);
+  color: #ffffff !important;
+}
+
+.alert-glass .alert-heading {
+  color: #ffffff !important;
+}
+
+/* Badges con contraste automático */
+.badge-auto-contrast {
+  padding: 0.5rem 1rem;
+  font-weight: 500;
+}
+
+.badge-light-contrast {
+  background-color: rgba(255, 255, 255, 0.9) !important;
+  color: #1a1a1a !important;
+}
+
+.badge-dark-contrast {
+  background-color: rgba(0, 0, 0, 0.8) !important;
+  color: #ffffff !important;
+}
+
+/* Estados de hover con contraste mejorado */
+.glass-card:hover .text-dark {
+  color: #ffffff !important;
+}
+
+.glass-card:hover .text-muted {
+  color: rgba(255, 255, 255, 0.8) !important;
+}
+
+/* Accesibilidad: Focus indicators */
+.focus-visible-white:focus,
+.focus-visible-white:focus-visible {
+  outline: 2px solid rgba(255, 255, 255, 0.8) !important;
+  outline-offset: 2px !important;
+}
+
+.focus-visible-dark:focus,
+.focus-visible-dark:focus-visible {
+  outline: 2px solid rgba(0, 0, 0, 0.8) !important;
+  outline-offset: 2px !important;
+}
+
+/* Loading states con contraste */
+.spinner-border-contrast-light {
+  color: rgba(255, 255, 255, 0.8) !important;
+}
+
+.spinner-border-contrast-dark {
+  color: rgba(0, 0, 0, 0.8) !important;
+}
+
+/* Media queries para mejor accesibilidad */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+@media (prefers-contrast: high) {
+  .text-gradient-muted {
+    color: rgba(255, 255, 255, 0.9) !important;
+  }
+  
+  .text-gradient-hint {
+    color: rgba(255, 255, 255, 0.85) !important;
+  }
+}
+
+/* ========================================================== */
+/* CORRECCIÓN CRÍTICA: STAT-BADGE HOVER VISIBILITY ISSUE */
+/* ========================================================== */
+
+/* NIVEL 1: Protección base para stat-badge */
+.stat-badge,
+.stat-badge * {
+  background-color: white !important;
+  transition: none !important;
+  animation: none !important;
+}
+
+/* NIVEL 2: Protección específica de colores */
+.stat-badge .text-dark,
+.stat-badge h6.text-dark,
+.stat-badge .fw-semibold {
+  color: #1a1a1a !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+.stat-badge .text-muted,
+.stat-badge small.text-muted {
+  color: #6c757d !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+.stat-badge .text-primary,
+.stat-badge .fw-bold.text-primary {
+  color: #0d6efd !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+/* NIVEL 3: Protección durante hover del contenedor padre */
+.glass-card:hover .stat-badge,
+.glass-card:hover .stat-badge *,
+.glass-card:focus .stat-badge,
+.glass-card:focus .stat-badge * {
+  background-color: white !important;
+  transition: none !important;
+  animation: none !important;
+}
+
+.glass-card:hover .stat-badge .text-dark,
+.glass-card:hover .stat-badge h6.text-dark,
+.glass-card:hover .stat-badge .fw-semibold,
+.glass-card:focus .stat-badge .text-dark,
+.glass-card:focus .stat-badge h6.text-dark,
+.glass-card:focus .stat-badge .fw-semibold {
+  color: #1a1a1a !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  text-shadow: none !important;
+}
+
+.glass-card:hover .stat-badge .text-muted,
+.glass-card:hover .stat-badge small.text-muted,
+.glass-card:focus .stat-badge .text-muted,
+.glass-card:focus .stat-badge small.text-muted {
+  color: #6c757d !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  text-shadow: none !important;
+}
+
+.glass-card:hover .stat-badge .text-primary,
+.glass-card:hover .stat-badge .fw-bold.text-primary,
+.glass-card:focus .stat-badge .text-primary,
+.glass-card:focus .stat-badge .fw-bold.text-primary {
+  color: #0d6efd !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  text-shadow: none !important;
+}
+
+/* NIVEL 4: Protección para elementos específicos mencionados por el usuario */
+.stat-badge h6:contains("📈 Uso de Tarjetas"),
+.stat-badge [class*="text-"]:contains("📈"),
+.stat-badge [class*="text-"]:contains("Uso de Tarjetas") {
+  color: #1a1a1a !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  display: block !important;
+  font-weight: 600 !important;
+}
+
+/* NIVEL 5: Protección adicional con z-index y positioning */
+.stat-badge {
+  position: relative !important;
+  z-index: 100 !important;
+  background: white !important;
+  border: 1px solid #e2e8f0 !important;
+  border-radius: 12px !important;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1) !important;
+}
+
+/* Debugging: En caso de problemas, esto hará visible cualquier elemento oculto */
+.debug-visibility .stat-badge * {
+  background: rgba(255, 0, 0, 0.1) !important;
+  border: 1px dashed red !important;
+}
+
+/* ========================================================== */
+/* FONDOS PREMIUM PARA GLASSMORPHISM */
+/* ========================================================== */
+
+/* Hover effects for background presets */
+.preset-bg-option:hover {
+  transform: translateY(-2px) scale(1.05) !important;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.2) !important;
+  border-color: #007bff !important;
+}
+
+/* Active state for selected background */
+.preset-bg-option.active {
+  border-color: #007bff !important;
+  border-width: 3px !important;
+  transform: scale(1.1) !important;
+}
+
+/* Responsive spacing for mobile */
+@media (max-width: 576px) {
+  .preset-bg-option {
+    width: 50px !important;
+    height: 50px !important;
+    margin-bottom: 25px !important;
+  }
+  
+  .preset-bg-option div {
+    font-size: 9px !important;
+    bottom: -18px !important;
+  }
+}
