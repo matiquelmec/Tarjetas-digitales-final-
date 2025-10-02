@@ -46,7 +46,7 @@ const IndiNavbar: React.FC<IndiNavbarProps> = ({
     <>
       <style jsx>{`
         .indi-navbar-container {
-          padding: 0.75rem 0;
+          padding: 0.25rem 0;
           transition: all 0.3s ease;
           z-index: 1000;
         }
