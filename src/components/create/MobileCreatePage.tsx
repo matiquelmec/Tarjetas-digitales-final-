@@ -234,36 +234,36 @@ export function MobileCreatePage({ cardData, updateCardData, onPublish }: Mobile
             </Container>
           </div>
 
-          {/* Navegación Inferior Integrada */}
-          <div className="form-navigation-bar" style={{background: 'red', border: '2px solid yellow', minHeight: '60px'}}>
-            <Button
-              variant="outline-light"
-              disabled={!canGoPrev}
-              onClick={handlePrev}
-              className="nav-btn"
-              size="sm"
-            >
-              ← Anterior
-            </Button>
-
-            <div className="nav-info">
-              <span className="completion-status">
-                {getTabCompletionStatus(activeTab) ? '✓ Completado' : '⚠️ Incompleto'}
-              </span>
-            </div>
-
-            <Button
-              variant={isLastTab ? 'success' : 'primary'}
-              onClick={handleNextWithPublish}
-              className="nav-btn"
-              size="sm"
-              disabled={!getTabCompletionStatus(activeTab) && !isLastTab}
-            >
-              {isLastTab ? '🚀 Publicar' : 'Siguiente →'}
-            </Button>
-          </div>
-
         </div>
+      </div>
+
+      {/* Navegación Flotante Simple - POR ENCIMA del pie de página */}
+      <div className="navigation-overlay">
+        <Button
+          variant="outline-light"
+          disabled={!canGoPrev}
+          onClick={handlePrev}
+          className="nav-btn"
+          size="sm"
+        >
+          ← Anterior
+        </Button>
+
+        <div className="nav-info">
+          <span className="completion-status">
+            {getTabCompletionStatus(activeTab) ? '✓ Completado' : '⚠️ Incompleto'}
+          </span>
+        </div>
+
+        <Button
+          variant={isLastTab ? 'success' : 'primary'}
+          onClick={handleNextWithPublish}
+          className="nav-btn"
+          size="sm"
+          disabled={!getTabCompletionStatus(activeTab) && !isLastTab}
+        >
+          {isLastTab ? '🚀 Publicar' : 'Siguiente →'}
+        </Button>
       </div>
 
       {/* Modal Preview Full-screen */}
@@ -470,16 +470,21 @@ export function MobileCreatePage({ cardData, updateCardData, onPublish }: Mobile
           padding-bottom: 20px;
         }
 
-        /* Navegación del Formulario Integrada */
-        .form-navigation-bar {
+        /* Navegación Flotante Simple */
+        .navigation-overlay {
+          position: fixed;
+          bottom: 0;
+          left: 0;
+          right: 0;
+          z-index: 999999;
           display: flex;
           justify-content: space-between;
           align-items: center;
           padding: 12px 16px;
-          background: rgba(0, 0, 0, 0.9);
-          backdrop-filter: blur(10px);
+          background: rgba(0, 0, 0, 0.95);
+          backdrop-filter: blur(15px);
           border-top: 1px solid rgba(255, 255, 255, 0.1);
-          flex-shrink: 0;
+          box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.5);
         }
 
 
@@ -588,9 +593,9 @@ export function MobileCreatePage({ cardData, updateCardData, onPublish }: Mobile
           margin-bottom: 1rem !important;
         }
 
-        /* Responsive para navegación integrada */
+        /* Responsive para navegación flotante */
         @media (max-width: 576px) {
-          .form-navigation-bar {
+          .navigation-overlay {
             padding: 10px 12px;
           }
 
