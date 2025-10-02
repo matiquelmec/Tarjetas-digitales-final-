@@ -1317,10 +1317,16 @@ ${formattedAbout ? `${formattedAbout}
                   <Image
                     src={photoUrl}
                     alt="Foto del Profesional"
-                    fill
+                    width={isPreviewMode ? 100 : isMobile ? 120 : 130}
+                    height={isPreviewMode ? 100 : isMobile ? 120 : 130}
                     style={{
                       objectFit: 'cover',
-                      objectPosition: 'center center'
+                      objectPosition: 'center center',
+                      width: '100%',
+                      height: '100%',
+                      position: 'absolute',
+                      top: 0,
+                      left: 0
                     }}
                     sizes="(max-width: 768px) 120px, (max-width: 1200px) 130px, 140px"
                     priority={false}
