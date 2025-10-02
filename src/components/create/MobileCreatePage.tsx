@@ -474,20 +474,22 @@ export function MobileCreatePage({ cardData, updateCardData, onPublish }: Mobile
 
         /* Smart Navigation Bar */
         .smart-navigation-bar {
-          display: flex;
+          display: flex !important;
           justify-content: space-between;
           align-items: center;
           padding: 12px 16px;
-          background: rgba(0, 0, 0, 0.95);
+          background: rgba(0, 0, 0, 0.95) !important;
           backdrop-filter: blur(15px);
           border-top: 1px solid rgba(255, 255, 255, 0.1);
           padding-bottom: calc(12px + env(safe-area-inset-bottom));
-          position: fixed;
-          bottom: 0;
-          left: 0;
-          right: 0;
-          z-index: 9999;
+          position: fixed !important;
+          bottom: 0 !important;
+          left: 0 !important;
+          right: 0 !important;
+          z-index: 99999 !important;
           box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.5);
+          visibility: visible !important;
+          opacity: 1 !important;
         }
 
         .nav-btn {
@@ -501,6 +503,9 @@ export function MobileCreatePage({ cardData, updateCardData, onPublish }: Mobile
           min-height: 44px !important;
           touch-action: manipulation !important;
           user-select: none !important;
+          display: block !important;
+          visibility: visible !important;
+          opacity: 1 !important;
         }
 
         .nav-btn:disabled {
@@ -590,6 +595,29 @@ export function MobileCreatePage({ cardData, updateCardData, onPublish }: Mobile
           position: relative !important;
           z-index: 1000 !important;
           margin-bottom: 1rem !important;
+        }
+
+        /* Forzar visibilidad en móvil */
+        @media (max-width: 768px) {
+          .smart-navigation-bar {
+            display: flex !important;
+            position: fixed !important;
+            bottom: 0 !important;
+            left: 0 !important;
+            right: 0 !important;
+            z-index: 99999 !important;
+            background: rgba(255, 0, 0, 0.9) !important;
+            visibility: visible !important;
+            opacity: 1 !important;
+            height: 80px !important;
+            border: 2px solid yellow !important;
+          }
+
+          .nav-btn {
+            display: block !important;
+            visibility: visible !important;
+            opacity: 1 !important;
+          }
         }
       `}</style>
     </div>
