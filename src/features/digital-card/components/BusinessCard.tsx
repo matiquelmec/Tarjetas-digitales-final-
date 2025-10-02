@@ -304,9 +304,10 @@ const staticStyles = `
   .indi-photo-container {
     margin-bottom: var(--spacing-photo-margin) !important;
     position: relative;
-    display: flex;
-    align-items: flex-start;
-    justify-content: center;
+    display: block;
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
   }
 
   .header-section {
