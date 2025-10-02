@@ -305,7 +305,7 @@ const staticStyles = `
     margin-bottom: var(--spacing-photo-margin) !important;
     position: relative;
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     justify-content: center;
   }
 
@@ -1320,7 +1320,7 @@ ${formattedAbout ? `${formattedAbout}
                     fill
                     style={{
                       objectFit: 'cover',
-                      objectPosition: 'center center'
+                      objectPosition: 'center 40%'
                     }}
                     sizes="(max-width: 768px) 120px, (max-width: 1200px) 130px, 140px"
                     priority={false}
