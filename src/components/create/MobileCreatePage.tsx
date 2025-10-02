@@ -227,43 +227,43 @@ export function MobileCreatePage({ cardData, updateCardData, onPublish }: Mobile
             </Tabs>
           </div>
 
-          {/* Contenido del Formulario */}
-          <div className="form-content">
+          {/* Contenido del Formulario con Scroll */}
+          <div className="form-content-scrollable">
             <Container fluid className="p-3">
               {renderStepContent()}
             </Container>
           </div>
 
+          {/* Navegación Inferior Integrada */}
+          <div className="form-navigation-bar">
+            <Button
+              variant="outline-light"
+              disabled={!canGoPrev}
+              onClick={handlePrev}
+              className="nav-btn"
+              size="sm"
+            >
+              ← Anterior
+            </Button>
+
+            <div className="nav-info">
+              <span className="completion-status">
+                {getTabCompletionStatus(activeTab) ? '✓ Completado' : '⚠️ Incompleto'}
+              </span>
+            </div>
+
+            <Button
+              variant={isLastTab ? 'success' : 'primary'}
+              onClick={handleNextWithPublish}
+              className="nav-btn"
+              size="sm"
+              disabled={!getTabCompletionStatus(activeTab) && !isLastTab}
+            >
+              {isLastTab ? '🚀 Publicar' : 'Siguiente →'}
+            </Button>
+          </div>
+
         </div>
-      </div>
-
-      {/* Navegación Inferior Mejorada - FUERA del container principal */}
-      <div className="smart-navigation-bar">
-        <Button
-          variant="outline-light"
-          disabled={!canGoPrev}
-          onClick={handlePrev}
-          className="nav-btn"
-          size="sm"
-        >
-          ← Anterior
-        </Button>
-
-        <div className="nav-info">
-          <span className="completion-status">
-            {getTabCompletionStatus(activeTab) ? '✓ Completado' : '⚠️ Incompleto'}
-          </span>
-        </div>
-
-        <Button
-          variant={isLastTab ? 'success' : 'primary'}
-          onClick={handleNextWithPublish}
-          className="nav-btn"
-          size="sm"
-          disabled={!getTabCompletionStatus(activeTab) && !isLastTab}
-        >
-          {isLastTab ? '🚀 Publicar' : 'Siguiente →'}
-        </Button>
       </div>
 
       {/* Modal Preview Full-screen */}
@@ -461,36 +461,26 @@ export function MobileCreatePage({ cardData, updateCardData, onPublish }: Mobile
           border: 1px solid #4ade80;
         }
 
-        /* Form Content */
-        .form-content {
+        /* Form Content con Scroll Interno */
+        .form-content-scrollable {
           flex: 1;
           overflow-y: auto;
           overflow-x: hidden;
-          padding-bottom: 120px; /* Más espacio para evitar que la navegación tape el contenido */
+          padding-bottom: 20px;
         }
 
-        /* Asegurar que el último elemento tenga espacio suficiente */
-        .form-content .container-fluid {
-          padding-bottom: 40px !important;
-        }
-
-        /* Smart Navigation Bar */
-        .smart-navigation-bar {
+        /* Navegación del Formulario Integrada */
+        .form-navigation-bar {
           display: flex;
           justify-content: space-between;
           align-items: center;
           padding: 12px 16px;
-          background: rgba(0, 0, 0, 0.95);
-          backdrop-filter: blur(15px);
+          background: rgba(0, 0, 0, 0.9);
+          backdrop-filter: blur(10px);
           border-top: 1px solid rgba(255, 255, 255, 0.1);
-          padding-bottom: calc(12px + env(safe-area-inset-bottom));
-          position: fixed;
-          bottom: 0;
-          left: 0;
-          right: 0;
-          z-index: 10000;
-          box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.5);
+          flex-shrink: 0;
         }
+
 
         .nav-btn {
           flex: 1;
@@ -597,24 +587,15 @@ export function MobileCreatePage({ cardData, updateCardData, onPublish }: Mobile
           margin-bottom: 1rem !important;
         }
 
-        /* Forzar visibilidad en móvil */
-        @media (max-width: 768px) {
-          .smart-navigation-bar {
-            display: flex !important;
-            position: fixed !important;
-            bottom: 0 !important;
-            left: 0 !important;
-            right: 0 !important;
-            z-index: 10000 !important;
-            background: rgba(0, 0, 0, 0.95) !important;
-            visibility: visible !important;
-            opacity: 1 !important;
+        /* Responsive para navegación integrada */
+        @media (max-width: 576px) {
+          .form-navigation-bar {
+            padding: 10px 12px;
           }
 
           .nav-btn {
-            display: block !important;
-            visibility: visible !important;
-            opacity: 1 !important;
+            font-size: 12px !important;
+            padding: 10px 6px !important;
           }
         }
       `}</style>
