@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { getServerSession } from 'next-auth';
-import { authOptionsSafe } from '@/lib/auth-safe';
+import { authOptionsRobust } from '@/lib/auth-robust';
 import { prisma } from '@/lib/db';
 // import { UserStatus } from '@prisma/client'; // Using string literals instead
 // import { AccessService } from '@/lib/planLimits'; // Comentado temporalmente para evitar errores
@@ -9,7 +9,7 @@ export async function POST() {
   try {
     console.log('POST /api/user/ensure - Starting request');
     
-    const session = await getServerSession(authOptionsSafe);
+    const session = await getServerSession(authOptionsRobust);
     
     console.log('Session data:', {
       hasSession: !!session,
