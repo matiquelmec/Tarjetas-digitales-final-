@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { getServerSession } from 'next-auth';
-import { authOptionsSafe } from '@/lib/auth-safe';
+import { authOptionsRobust } from '@/lib/auth-robust';
 import { CardService } from '@/lib/cardService';
 import { AccessService, PlanLimitService } from '@/lib/planLimits';
 import { prisma } from '@/lib/db';
@@ -8,7 +8,7 @@ import { prisma } from '@/lib/db';
 export async function GET() {
   try {
     console.log('GET /api/cards - Starting request');
-    const session = await getServerSession(authOptionsSafe);
+    const session = await getServerSession(authOptionsRobust);
     
     console.log('GET Session data:', {
       hasSession: !!session,
@@ -45,7 +45,7 @@ export async function POST(request: NextRequest) {
     console.log('POST /api/cards - Starting request');
     
     // Use the updated authOptionsSafe with JWT strategy
-    const session = await getServerSession(authOptionsSafe);
+    const session = await getServerSession(authOptionsRobust);
     
     console.log('Session data:', {
       hasSession: !!session,
