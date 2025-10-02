@@ -293,11 +293,11 @@ export function MobileCreatePage({ cardData, updateCardData, onPublish }: Mobile
           position: relative;
         }
 
-        /* PREVIEW SECTION - 40% Superior */
+        /* PREVIEW SECTION - Más compacta */
         .preview-section {
-          height: 40vh;
-          min-height: 280px;
-          max-height: 350px;
+          height: 35vh;
+          min-height: 220px;
+          max-height: 280px;
           display: flex;
           flex-direction: column;
           background: rgba(0, 0, 0, 0.3);
@@ -309,7 +309,7 @@ export function MobileCreatePage({ cardData, updateCardData, onPublish }: Mobile
           display: flex;
           justify-content: space-between;
           align-items: center;
-          padding: 12px 16px;
+          padding: 8px 16px;
           background: rgba(255, 255, 255, 0.05);
           border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
@@ -348,9 +348,9 @@ export function MobileCreatePage({ cardData, updateCardData, onPublish }: Mobile
           background: transparent;
         }
 
-        /* FORM SECTION - 60% Inferior */
+        /* FORM SECTION - Más espacio disponible */
         .form-section {
-          height: 60vh;
+          height: 65vh;
           display: flex;
           flex-direction: column;
           background: rgba(255, 255, 255, 0.05);
@@ -362,7 +362,7 @@ export function MobileCreatePage({ cardData, updateCardData, onPublish }: Mobile
 
         /* Progress Header */
         .progress-header {
-          padding: 12px 16px;
+          padding: 8px 16px;
           background: rgba(0, 0, 0, 0.2);
           border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
