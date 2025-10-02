@@ -128,10 +128,6 @@ export function MobileCreatePage({ cardData, updateCardData, onPublish }: Mobile
 
   return (
     <div className="mobile-smart-layout">
-      {/* DEBUG: Confirmar que MobileCreatePage se renderiza */}
-      <div style={{position: 'fixed', top: '50px', left: '10px', background: 'blue', color: 'white', padding: '10px', zIndex: 99999}}>
-        DEBUG: MobileCreatePage RENDERED
-      </div>
 
       {/* Navegación unificada con IndiNavbar */}
       <IndiNavbar variant="solid" position="sticky" showActions={true} />
@@ -480,22 +476,20 @@ export function MobileCreatePage({ cardData, updateCardData, onPublish }: Mobile
 
         /* Smart Navigation Bar */
         .smart-navigation-bar {
-          display: flex !important;
+          display: flex;
           justify-content: space-between;
           align-items: center;
           padding: 12px 16px;
-          background: rgba(0, 0, 0, 0.95) !important;
+          background: rgba(0, 0, 0, 0.95);
           backdrop-filter: blur(15px);
           border-top: 1px solid rgba(255, 255, 255, 0.1);
           padding-bottom: calc(12px + env(safe-area-inset-bottom));
-          position: fixed !important;
-          bottom: 0 !important;
-          left: 0 !important;
-          right: 0 !important;
-          z-index: 99999 !important;
+          position: fixed;
+          bottom: 0;
+          left: 0;
+          right: 0;
+          z-index: 1050;
           box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.5);
-          visibility: visible !important;
-          opacity: 1 !important;
         }
 
         .nav-btn {
@@ -611,12 +605,10 @@ export function MobileCreatePage({ cardData, updateCardData, onPublish }: Mobile
             bottom: 0 !important;
             left: 0 !important;
             right: 0 !important;
-            z-index: 99999 !important;
-            background: rgba(255, 0, 0, 0.9) !important;
+            z-index: 1050 !important;
+            background: rgba(0, 0, 0, 0.95) !important;
             visibility: visible !important;
             opacity: 1 !important;
-            height: 80px !important;
-            border: 2px solid yellow !important;
           }
 
           .nav-btn {

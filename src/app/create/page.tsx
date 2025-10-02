@@ -583,10 +583,6 @@ export default function CreateCardPage() {
         />
       </div>
 
-      {/* DEBUG: Siempre mostrar en móvil */}
-      <div className="d-block d-md-none" style={{position: 'fixed', top: '10px', left: '10px', background: 'red', color: 'white', padding: '10px', zIndex: 99999}}>
-        DEBUG: Mobile Create Page should be here
-      </div>
     </>
   );
 }
