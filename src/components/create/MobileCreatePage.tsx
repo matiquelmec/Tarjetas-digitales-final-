@@ -351,6 +351,8 @@ export function MobileCreatePage({ cardData, updateCardData, onPublish }: Mobile
           flex-direction: column;
           background: rgba(255, 255, 255, 0.05);
           backdrop-filter: blur(5px);
+          position: relative;
+          z-index: 1;
         }
 
         /* Progress Header */
@@ -468,20 +470,27 @@ export function MobileCreatePage({ cardData, updateCardData, onPublish }: Mobile
           justify-content: space-between;
           align-items: center;
           padding: 12px 16px;
-          background: rgba(0, 0, 0, 0.8);
-          backdrop-filter: blur(10px);
+          background: rgba(0, 0, 0, 0.95);
+          backdrop-filter: blur(15px);
           border-top: 1px solid rgba(255, 255, 255, 0.1);
           padding-bottom: calc(12px + env(safe-area-inset-bottom));
+          position: sticky;
+          bottom: 0;
+          z-index: 9999;
+          box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.5);
         }
 
         .nav-btn {
           flex: 1;
           margin: 0 4px;
-          padding: 10px 8px !important;
+          padding: 12px 8px !important;
           font-weight: 600 !important;
           border-radius: 8px !important;
-          font-size: 12px !important;
+          font-size: 13px !important;
           transition: all 0.3s ease !important;
+          min-height: 44px !important;
+          touch-action: manipulation !important;
+          user-select: none !important;
         }
 
         .nav-btn:disabled {
