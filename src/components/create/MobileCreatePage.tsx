@@ -488,7 +488,7 @@ export function MobileCreatePage({ cardData, updateCardData, onPublish }: Mobile
           bottom: 0;
           left: 0;
           right: 0;
-          z-index: 1050;
+          z-index: 10000;
           box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.5);
         }
 
@@ -605,7 +605,7 @@ export function MobileCreatePage({ cardData, updateCardData, onPublish }: Mobile
             bottom: 0 !important;
             left: 0 !important;
             right: 0 !important;
-            z-index: 1050 !important;
+            z-index: 10000 !important;
             background: rgba(0, 0, 0, 0.95) !important;
             visibility: visible !important;
             opacity: 1 !important;
