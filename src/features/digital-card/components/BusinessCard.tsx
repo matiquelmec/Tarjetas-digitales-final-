@@ -1330,7 +1330,7 @@ ${formattedAbout ? `${formattedAbout}
                     width={isPreviewMode ? 100 : isMobile ? 120 : 130}
                     height={isPreviewMode ? 100 : isMobile ? 120 : 130}
                     style={{
-                      objectFit: 'cover',
+                      objectFit: 'contain',
                       objectPosition: 'center center',
                       width: '100%',
                       height: '100%',
