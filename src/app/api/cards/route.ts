@@ -22,17 +22,27 @@ export async function GET() {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
 
-    // Buscar usuario por email
-    const user = await prisma.user.findUnique({
-      where: { email: session.user.email }
+    // Optimized: Get cards directly with user email join
+    const cards = await prisma.card.findMany({
+      where: {
+        user: {
+          email: session.user.email
+        }
+      },
+      select: {
+        id: true,
+        title: true,
+        name: true,
+        profession: true,
+        views: true,
+        clicks: true,
+        isActive: true,
+        createdAt: true
+      },
+      orderBy: {
+        createdAt: 'desc'
+      }
     });
-
-    if (!user) {
-      console.log('GET User not found for email:', session.user.email);
-      return NextResponse.json([]);
-    }
-
-    const cards = await CardService.getUserCards(user.id);
     return NextResponse.json(cards);
   } catch (error) {
     console.error('Error fetching cards:', error);

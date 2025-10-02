@@ -39,7 +39,7 @@ export default function Dashboard() {
   usePostLoginRedirect();
 
   useEffect(() => {
-    if (session?.user?.id) {
+    if (session?.user?.email) {
       fetchCards();
       fetchPlanLimits();
       
