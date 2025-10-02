@@ -171,13 +171,13 @@ export function MobileCreatePage({ cardData, updateCardData, onPublish }: Mobile
               facebook={cardData.facebook || ''}
               website={cardData.website || ''}
               template={cardData.template || 'modern'}
-              enableHoverEffect={false}
-              enableGlassmorphism={false}
-              enableSubtleAnimations={false}
-              enableBackgroundPatterns={false}
-              enableParticles={false}
-              enableAnimatedGradient={false}
-              enableFloatingShapes={false}
+              enableHoverEffect={cardData.enableHoverEffect || false}
+              enableGlassmorphism={cardData.enableGlassmorphism || false}
+              enableSubtleAnimations={cardData.enableSubtleAnimations || false}
+              enableBackgroundPatterns={cardData.enableBackgroundPatterns || false}
+              enableParticles={cardData.enableParticles || false}
+              enableAnimatedGradient={cardData.enableAnimatedGradient || false}
+              enableFloatingShapes={cardData.enableFloatingShapes || false}
               whatsappShareUrl={`https://wa.me/${cardData.whatsapp || cardData.phone || ''}?text=Hola, vi tu tarjeta digital`}
             />
           </div>
@@ -344,7 +344,7 @@ export function MobileCreatePage({ cardData, updateCardData, onPublish }: Mobile
           padding: 16px;
           display: flex;
           justify-content: center;
-          align-items: flex-start;
+          align-items: center;
           background: transparent;
         }
 
