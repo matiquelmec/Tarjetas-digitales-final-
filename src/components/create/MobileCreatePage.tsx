@@ -344,7 +344,7 @@ export function MobileCreatePage({ cardData, updateCardData, onPublish }: Mobile
           padding: 16px;
           display: flex;
           justify-content: center;
-          align-items: center;
+          align-items: flex-start;
           background: transparent;
         }
 
