@@ -128,6 +128,11 @@ export function MobileCreatePage({ cardData, updateCardData, onPublish }: Mobile
 
   return (
     <div className="mobile-smart-layout">
+      {/* DEBUG: Confirmar que MobileCreatePage se renderiza */}
+      <div style={{position: 'fixed', top: '50px', left: '10px', background: 'blue', color: 'white', padding: '10px', zIndex: 99999}}>
+        DEBUG: MobileCreatePage RENDERED
+      </div>
+
       {/* Navegación unificada con IndiNavbar */}
       <IndiNavbar variant="solid" position="sticky" showActions={true} />
 

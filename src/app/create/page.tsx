@@ -575,12 +575,17 @@ export default function CreateCardPage() {
       />
 
       {/* Mobile Create Page - Solo visible en móvil, oculto en desktop */}
-      <div className="d-md-none">
-        <MobileCreatePage 
+      <div className="d-md-none" style={{display: 'block !important', position: 'relative', zIndex: 10000}}>
+        <MobileCreatePage
           cardData={cardData}
           updateCardData={updateCardData}
           onPublish={() => setShowPublishModal(true)}
         />
+      </div>
+
+      {/* DEBUG: Siempre mostrar en móvil */}
+      <div className="d-block d-md-none" style={{position: 'fixed', top: '10px', left: '10px', background: 'red', color: 'white', padding: '10px', zIndex: 99999}}>
+        DEBUG: Mobile Create Page should be here
       </div>
     </>
   );
