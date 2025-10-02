@@ -238,35 +238,36 @@ export function MobileCreatePage({ cardData, updateCardData, onPublish }: Mobile
             </Container>
           </div>
 
-          {/* Navegación Inferior Mejorada */}
-          <div className="smart-navigation-bar">
-            <Button
-              variant="outline-light"
-              disabled={!canGoPrev}
-              onClick={handlePrev}
-              className="nav-btn"
-              size="sm"
-            >
-              ← Anterior
-            </Button>
-
-            <div className="nav-info">
-              <span className="completion-status">
-                {getTabCompletionStatus(activeTab) ? '✓ Completado' : '⚠️ Incompleto'}
-              </span>
-            </div>
-
-            <Button
-              variant={isLastTab ? 'success' : 'primary'}
-              onClick={handleNextWithPublish}
-              className="nav-btn"
-              size="sm"
-              disabled={!getTabCompletionStatus(activeTab) && !isLastTab}
-            >
-              {isLastTab ? '🚀 Publicar' : 'Siguiente →'}
-            </Button>
-          </div>
         </div>
+      </div>
+
+      {/* Navegación Inferior Mejorada - FUERA del container principal */}
+      <div className="smart-navigation-bar">
+        <Button
+          variant="outline-light"
+          disabled={!canGoPrev}
+          onClick={handlePrev}
+          className="nav-btn"
+          size="sm"
+        >
+          ← Anterior
+        </Button>
+
+        <div className="nav-info">
+          <span className="completion-status">
+            {getTabCompletionStatus(activeTab) ? '✓ Completado' : '⚠️ Incompleto'}
+          </span>
+        </div>
+
+        <Button
+          variant={isLastTab ? 'success' : 'primary'}
+          onClick={handleNextWithPublish}
+          className="nav-btn"
+          size="sm"
+          disabled={!getTabCompletionStatus(activeTab) && !isLastTab}
+        >
+          {isLastTab ? '🚀 Publicar' : 'Siguiente →'}
+        </Button>
       </div>
 
       {/* Modal Preview Full-screen */}
