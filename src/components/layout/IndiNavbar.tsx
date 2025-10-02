@@ -219,10 +219,14 @@ const IndiNavbar: React.FC<IndiNavbarProps> = ({
             padding: 0.1rem 0; /* Minimal mobile padding */
           }
 
-          /* Logo más compacto en móvil */
+          /* Logo centrado y compacto en móvil */
           .logo-container {
             margin: 0 !important;
             padding: 0 !important;
+            display: flex !important;
+            justify-content: center !important;
+            align-items: center !important;
+            min-height: 40px;
           }
 
           /* Ocultar botones superiores en móvil */
