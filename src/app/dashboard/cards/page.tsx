@@ -46,7 +46,7 @@ export default function DashboardCardsPage() {
   const demoCardData = CONSISTENT_DEMO_DATA;
 
   useEffect(() => {
-    if (session?.user?.id) {
+    if (session?.user?.email) {
       fetchCards();
       fetchPlanLimits();
 
