@@ -308,6 +308,13 @@ const staticStyles = `
     align-items: center;
     justify-content: center;
   }
+
+  .header-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
   
   /* 📱 RESPONSIVE DESIGN - Mobile-First Excellence */
   @media (max-width: 768px) {
@@ -1311,8 +1318,8 @@ ${formattedAbout ? `${formattedAbout}
                     src={photoUrl}
                     alt="Foto del Profesional"
                     fill
-                    style={{ 
-                      objectFit: 'cover',
+                    style={{
+                      objectFit: 'contain',
                       objectPosition: 'center center',
                       width: '100%',
                       height: '100%'
