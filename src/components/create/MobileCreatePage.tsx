@@ -285,8 +285,10 @@ export function MobileCreatePage({ cardData, updateCardData, onPublish }: Mobile
         .split-screen-container {
           display: flex;
           flex-direction: column;
-          height: calc(100vh - 80px); /* Descontar navbar */
-          overflow: hidden;
+          min-height: calc(100vh - 80px); /* Descontar navbar */
+          max-height: calc(100vh - 80px);
+          overflow: visible; /* Permitir que la navegación sea visible */
+          position: relative;
         }
 
         /* PREVIEW SECTION - 40% Superior */
@@ -480,8 +482,10 @@ export function MobileCreatePage({ cardData, updateCardData, onPublish }: Mobile
           backdrop-filter: blur(15px);
           border-top: 1px solid rgba(255, 255, 255, 0.1);
           padding-bottom: calc(12px + env(safe-area-inset-bottom));
-          position: sticky;
+          position: fixed;
           bottom: 0;
+          left: 0;
+          right: 0;
           z-index: 9999;
           box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.5);
         }
