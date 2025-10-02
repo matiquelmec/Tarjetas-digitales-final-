@@ -462,6 +462,12 @@ export function MobileCreatePage({ cardData, updateCardData, onPublish }: Mobile
           flex: 1;
           overflow-y: auto;
           overflow-x: hidden;
+          padding-bottom: 80px; /* Espacio para la barra de navegación inferior */
+        }
+
+        /* Asegurar que el último elemento tenga espacio suficiente */
+        .form-content .container-fluid {
+          padding-bottom: 20px !important;
         }
 
         /* Smart Navigation Bar */
@@ -559,6 +565,13 @@ export function MobileCreatePage({ cardData, updateCardData, onPublish }: Mobile
         /* Smooth Transitions */
         .preview-content, .form-content {
           scroll-behavior: smooth;
+        }
+
+        /* Mejorar scroll en dispositivos muy pequeños */
+        @media (max-height: 667px) {
+          .form-content {
+            padding-bottom: 90px; /* Más espacio en pantallas pequeñas */
+          }
         }
 
         /* Estilos globales para alertas */

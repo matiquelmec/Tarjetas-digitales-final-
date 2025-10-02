@@ -405,9 +405,116 @@
     height: 50px !important;
     margin-bottom: 25px !important;
   }
-  
+
   .preset-bg-option div {
     font-size: 9px !important;
     bottom: -18px !important;
+  }
+}
+
+/* ========================================================== */
+/* CORRECCIÓN GLOBAL: CONTENIDO TAPADO POR NAVEGACIÓN MÓVIL */
+/* ========================================================== */
+
+/* Solución para todas las páginas en móvil */
+@media (max-width: 768px) {
+  /* Container principal con padding inferior para navegación móvil */
+  .container,
+  .container-fluid {
+    padding-bottom: 60px !important;
+  }
+
+  /* Páginas de dashboard con contenido extenso */
+  .animated-gradient-background .container,
+  .animated-gradient-background .container-fluid {
+    padding-bottom: 80px !important;
+  }
+
+  /* Asegurar que el último elemento sea visible */
+  .container > .row:last-child,
+  .container-fluid > .row:last-child {
+    margin-bottom: 20px !important;
+  }
+
+  /* Cards y elementos al final de página */
+  .glass-card:last-child,
+  .minimal-card:last-child,
+  .card:last-child {
+    margin-bottom: 40px !important;
+  }
+
+  /* Botones de acción al final de formularios */
+  .card-footer,
+  .modal-footer,
+  .form-actions {
+    margin-bottom: 20px !important;
+  }
+}
+
+/* Ajustes específicos para pantallas muy pequeñas */
+@media (max-width: 576px) {
+  .container,
+  .container-fluid {
+    padding-bottom: 70px !important;
+  }
+
+  .animated-gradient-background .container,
+  .animated-gradient-background .container-fluid {
+    padding-bottom: 90px !important;
+  }
+}
+
+/* Ajustes para dispositivos con navegación inferior nativa */
+@media (max-width: 768px) and (max-height: 667px) {
+  /* iPhone SE, dispositivos pequeños */
+  .container,
+  .container-fluid {
+    padding-bottom: 80px !important;
+  }
+
+  .animated-gradient-background .container,
+  .animated-gradient-background .container-fluid {
+    padding-bottom: 100px !important;
+  }
+}
+
+/* Protección para contenido scrolleable */
+@media (max-width: 768px) {
+  .overflow-auto,
+  .overflow-y-auto {
+    padding-bottom: 40px !important;
+  }
+
+  /* Elementos con altura específica que pueden tener scroll */
+  [style*="height"],
+  [style*="max-height"] {
+    padding-bottom: 30px !important;
+  }
+}
+
+/* Soporte para dispositivos con safe-area (notch, home indicator) */
+@supports (padding-bottom: env(safe-area-inset-bottom)) {
+  @media (max-width: 768px) {
+    .container,
+    .container-fluid {
+      padding-bottom: calc(60px + env(safe-area-inset-bottom)) !important;
+    }
+
+    .animated-gradient-background .container,
+    .animated-gradient-background .container-fluid {
+      padding-bottom: calc(80px + env(safe-area-inset-bottom)) !important;
+    }
+  }
+
+  @media (max-width: 576px) {
+    .container,
+    .container-fluid {
+      padding-bottom: calc(70px + env(safe-area-inset-bottom)) !important;
+    }
+
+    .animated-gradient-background .container,
+    .animated-gradient-background .container-fluid {
+      padding-bottom: calc(90px + env(safe-area-inset-bottom)) !important;
+    }
   }
 }
