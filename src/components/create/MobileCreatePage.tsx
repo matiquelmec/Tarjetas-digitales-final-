@@ -127,124 +127,140 @@ export function MobileCreatePage({ cardData, updateCardData, onPublish }: Mobile
   };
 
   return (
-    <div className="mobile-create-container">
+    <div className="mobile-smart-layout">
       {/* Navegación unificada con IndiNavbar */}
       <IndiNavbar variant="solid" position="sticky" showActions={true} />
 
-      {/* Preview usando HologramPreview idéntico al inicio */}
-      <div className="mobile-preview-container">
-        <HologramPreview
-          title="👁️ Vista Previa"
-          subtitle="Vista en tiempo real"
-          pageBackgroundColor={cardData.pageBackgroundColor || '#1a1a2e'}
-          showScanlines={false}
-          mode="basic" // Modo básico sin efectos
-          showBeam={false}
-          showParticles={false}
-          enable3D={false}
-          height="100%" // Usar 100% para que se adapte al contenedor padre
-          className="preview-mode"
-        >
-          <BusinessCard
-            name={cardData.name || 'Tu Nombre'}
-            title={cardData.title || 'Tu Profesión'}
-            about={cardData.about || ''}
-            location={cardData.location || ''}
-            whatsapp={cardData.whatsapp || cardData.phone || ''}
-            email={cardData.email || ''}
-            photoUrl={cardData.photo || ''}
-            cardBackgroundColor={cardData.cardBackgroundColor || '#1F1F1F'}
-            cardTextColor={cardData.cardTextColor || '#EAEAEA'}
-            pageBackgroundColor={cardData.pageBackgroundColor || '#121212'}
-            buttonSecondaryColor={cardData.buttonSecondaryColor || '#00F6FF'}
-            buttonNormalBackgroundColor={cardData.buttonNormalBackgroundColor || '#1F1F1F'}
-            buttonSecondaryHoverColor={cardData.buttonSecondaryHoverColor || '#00D1DB'}
-            fontFamily={cardData.fontFamily || 'Inter'}
-            appointmentLink={cardData.appointmentLink || cardData.website || ''}
-            professionalDetails={cardData.professionalDetails || ''}
-            linkedin={cardData.linkedin || ''}
-            instagram={cardData.instagram || ''}
-            twitter={cardData.twitter || ''}
-            facebook={cardData.facebook || ''}
-            website={cardData.website || ''}
-            template={cardData.template || 'modern'}
-            enableHoverEffect={false}
-            enableGlassmorphism={false}
-            enableSubtleAnimations={false}
-            enableBackgroundPatterns={false}
-            enableParticles={false}
-            enableAnimatedGradient={false}
-            enableFloatingShapes={false}
-            whatsappShareUrl={`https://wa.me/${cardData.whatsapp || cardData.phone || ''}?text=Hola, vi tu tarjeta digital`}
-          />
-        </HologramPreview>
-      </div>
-
-      {/* Navegación por Tabs */}
-      <div className="mobile-tabs-container">
-        <Tabs
-          activeKey={activeTab}
-          onSelect={(key) => {
-            setActiveTab(key || 'datos');
-            // Auto-scroll al cambiar tab manualmente
-            setTimeout(scrollToTop, 100);
-          }}
-          className="mobile-tabs justify-content-center"
-          variant="pills"
-        >
-          {tabs.map((tab) => (
-            <Tab
-              key={tab.key}
-              eventKey={tab.key}
-              title={
-                <div className="tab-content">
-                  <span className="tab-icon">{tab.icon}</span>
-                  <span className="tab-text">{tab.title}</span>
-                  {getTabCompletionStatus(tab.key) && (
-                    <span className="tab-check">✓</span>
-                  )}
-                </div>
-              }
+      {/* SPLIT SCREEN LAYOUT */}
+      <div className="split-screen-container">
+        {/* PREVIEW SECTION - 40% Superior */}
+        <div className="preview-section">
+          <div className="preview-header">
+            <h6 className="preview-title">👁️ Vista Previa en Tiempo Real</h6>
+            <Button
+              variant="outline-light"
+              size="sm"
+              onClick={openFullPreview}
+              className="preview-expand-btn"
+            >
+              ⛶ Expandir
+            </Button>
+          </div>
+          <div className="preview-content">
+            <BusinessCard
+              name={cardData.name || 'Tu Nombre'}
+              title={cardData.title || 'Tu Profesión'}
+              about={cardData.about || ''}
+              location={cardData.location || ''}
+              whatsapp={cardData.whatsapp || cardData.phone || ''}
+              email={cardData.email || ''}
+              photoUrl={cardData.photo || ''}
+              cardBackgroundColor={cardData.cardBackgroundColor || '#1F1F1F'}
+              cardTextColor={cardData.cardTextColor || '#EAEAEA'}
+              pageBackgroundColor={cardData.pageBackgroundColor || '#121212'}
+              buttonSecondaryColor={cardData.buttonSecondaryColor || '#00F6FF'}
+              buttonNormalBackgroundColor={cardData.buttonNormalBackgroundColor || '#1F1F1F'}
+              buttonSecondaryHoverColor={cardData.buttonSecondaryHoverColor || '#00D1DB'}
+              fontFamily={cardData.fontFamily || 'Inter'}
+              appointmentLink={cardData.appointmentLink || cardData.website || ''}
+              professionalDetails={cardData.professionalDetails || ''}
+              linkedin={cardData.linkedin || ''}
+              instagram={cardData.instagram || ''}
+              twitter={cardData.twitter || ''}
+              facebook={cardData.facebook || ''}
+              website={cardData.website || ''}
+              template={cardData.template || 'modern'}
+              enableHoverEffect={false}
+              enableGlassmorphism={false}
+              enableSubtleAnimations={false}
+              enableBackgroundPatterns={false}
+              enableParticles={false}
+              enableAnimatedGradient={false}
+              enableFloatingShapes={false}
+              whatsappShareUrl={`https://wa.me/${cardData.whatsapp || cardData.phone || ''}?text=Hola, vi tu tarjeta digital`}
             />
-          ))}
-        </Tabs>
-      </div>
+          </div>
+        </div>
 
-      {/* Contenido del Formulario - Simplificado */}
-      <div className="mobile-form-container">
-        <Container fluid className="p-3">
-          {renderStepContent()}
-        </Container>
-        
-        {/* Navegación Inferior Simplificada */}
-        <div className="mobile-navigation-bar">
-          <Button
-            variant="outline-light"
-            disabled={!canGoPrev}
-            onClick={handlePrev}
-            className="nav-btn"
-            size="sm"
-          >
-            ← Anterior
-          </Button>
+        {/* FORM SECTION - 60% Inferior */}
+        <div className="form-section">
+          {/* Progress Indicator Integrado */}
+          <div className="progress-header">
+            <div className="step-indicator">
+              <span className="step-number">{currentTabIndex + 1}/4</span>
+              <span className="step-title">{tabs[currentTabIndex]?.title}</span>
+            </div>
+            <div className="progress-bar">
+              <div
+                className="progress-fill"
+                style={{ width: `${((currentTabIndex + 1) / 4) * 100}%` }}
+              />
+            </div>
+          </div>
 
-          <Button
-            variant="info"
-            onClick={openFullPreview}
-            className="preview-btn"
-            size="sm"
-          >
-            👁️ Preview
-          </Button>
+          {/* Navegación por Tabs Integrada */}
+          <div className="integrated-tabs">
+            <Tabs
+              activeKey={activeTab}
+              onSelect={(key) => {
+                setActiveTab(key || 'datos');
+              }}
+              className="smart-tabs"
+              variant="pills"
+            >
+              {tabs.map((tab) => (
+                <Tab
+                  key={tab.key}
+                  eventKey={tab.key}
+                  title={
+                    <div className="smart-tab-content">
+                      <span className="tab-icon">{tab.icon}</span>
+                      <span className="tab-text">{tab.title}</span>
+                      {getTabCompletionStatus(tab.key) && (
+                        <span className="tab-check">✓</span>
+                      )}
+                    </div>
+                  }
+                />
+              ))}
+            </Tabs>
+          </div>
 
-          <Button
-            variant={isLastTab ? 'success' : 'primary'}
-            onClick={handleNextWithPublish}
-            className="nav-btn"
-            size="sm"
-          >
-            {isLastTab ? '🚀 Publicar' : 'Siguiente →'}
-          </Button>
+          {/* Contenido del Formulario */}
+          <div className="form-content">
+            <Container fluid className="p-3">
+              {renderStepContent()}
+            </Container>
+          </div>
+
+          {/* Navegación Inferior Mejorada */}
+          <div className="smart-navigation-bar">
+            <Button
+              variant="outline-light"
+              disabled={!canGoPrev}
+              onClick={handlePrev}
+              className="nav-btn"
+              size="sm"
+            >
+              ← Anterior
+            </Button>
+
+            <div className="nav-info">
+              <span className="completion-status">
+                {getTabCompletionStatus(activeTab) ? '✓ Completado' : '⚠️ Incompleto'}
+              </span>
+            </div>
+
+            <Button
+              variant={isLastTab ? 'success' : 'primary'}
+              onClick={handleNextWithPublish}
+              className="nav-btn"
+              size="sm"
+              disabled={!getTabCompletionStatus(activeTab) && !isLastTab}
+            >
+              {isLastTab ? '🚀 Publicar' : 'Siguiente →'}
+            </Button>
+          </div>
         </div>
       </div>
 
@@ -257,54 +273,156 @@ export function MobileCreatePage({ cardData, updateCardData, onPublish }: Mobile
       )}
 
       <style jsx>{`
-        .mobile-create-container {
+        /* NUEVO SMART LAYOUT SPLIT SCREEN */
+        .mobile-smart-layout {
           min-height: 100vh;
           display: flex;
           flex-direction: column;
           background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-          /* Agregar padding superior para compensar el navbar sticky */
           padding-top: env(safe-area-inset-top);
         }
 
-        .mobile-preview-container {
-          position: sticky;
-          top: 80px; /* Espacio para navbar móvil: padding (32px) + logo (~48px) */
-          z-index: 10;
-          height: calc(50vh - 80px); /* Restar el espacio del navbar */
-          min-height: 280px; /* Altura mínima para funcionalidad */
-          max-height: 450px; /* Altura que respeta el navbar */
-          overflow-y: auto; /* Cambiar a auto para permitir scroll en el contenedor */
+        .split-screen-container {
           display: flex;
           flex-direction: column;
+          height: calc(100vh - 80px); /* Descontar navbar */
+          overflow: hidden;
         }
 
-        .mobile-tabs-container {
-          background: rgba(255, 255, 255, 0.1);
+        /* PREVIEW SECTION - 40% Superior */
+        .preview-section {
+          height: 40vh;
+          min-height: 280px;
+          max-height: 350px;
+          display: flex;
+          flex-direction: column;
+          background: rgba(0, 0, 0, 0.3);
           backdrop-filter: blur(10px);
-          padding: 8px 0;
+          border-bottom: 2px solid rgba(255, 255, 255, 0.1);
         }
 
-        :global(.mobile-tabs) {
+        .preview-header {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          padding: 12px 16px;
+          background: rgba(255, 255, 255, 0.05);
+          border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .preview-title {
+          color: white;
+          margin: 0;
+          font-size: 14px;
+          font-weight: 600;
+          text-shadow: 0 0 10px rgba(0, 246, 255, 0.8);
+        }
+
+        .preview-expand-btn {
+          padding: 6px 12px !important;
+          font-size: 12px !important;
+          border-radius: 6px !important;
+          border: 1px solid rgba(255, 255, 255, 0.3) !important;
+          background: rgba(255, 255, 255, 0.1) !important;
+          color: white !important;
+          transition: all 0.3s ease !important;
+        }
+
+        .preview-expand-btn:hover {
+          background: rgba(255, 255, 255, 0.2) !important;
+          border-color: rgba(255, 255, 255, 0.5) !important;
+        }
+
+        .preview-content {
+          flex: 1;
+          overflow-y: auto;
+          overflow-x: hidden;
+          padding: 16px;
+          display: flex;
+          justify-content: center;
+          align-items: flex-start;
+          background: transparent;
+        }
+
+        /* FORM SECTION - 60% Inferior */
+        .form-section {
+          height: 60vh;
+          display: flex;
+          flex-direction: column;
+          background: rgba(255, 255, 255, 0.05);
+          backdrop-filter: blur(5px);
+        }
+
+        /* Progress Header */
+        .progress-header {
+          padding: 12px 16px;
+          background: rgba(0, 0, 0, 0.2);
+          border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .step-indicator {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          margin-bottom: 8px;
+        }
+
+        .step-number {
+          color: #00f6ff;
+          font-weight: 700;
+          font-size: 14px;
+        }
+
+        .step-title {
+          color: white;
+          font-weight: 600;
+          font-size: 14px;
+        }
+
+        .progress-bar {
+          height: 4px;
+          background: rgba(255, 255, 255, 0.2);
+          border-radius: 2px;
+          overflow: hidden;
+        }
+
+        .progress-fill {
+          height: 100%;
+          background: linear-gradient(90deg, #00f6ff 0%, #0072ff 100%);
+          border-radius: 2px;
+          transition: width 0.3s ease;
+        }
+
+        /* Integrated Tabs */
+        .integrated-tabs {
+          background: rgba(255, 255, 255, 0.05);
+          padding: 8px 12px;
+          border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        :global(.smart-tabs) {
           border: none !important;
-          margin: 0 8px;
+          margin: 0 !important;
         }
 
-        :global(.mobile-tabs .nav-link) {
+        :global(.smart-tabs .nav-link) {
           background: transparent !important;
           border: none !important;
           color: rgba(255, 255, 255, 0.7) !important;
-          padding: 8px 12px !important;
-          border-radius: 12px !important;
+          padding: 6px 8px !important;
+          border-radius: 8px !important;
           transition: all 0.3s ease !important;
           text-align: center !important;
+          font-size: 11px !important;
         }
 
-        :global(.mobile-tabs .nav-link.active) {
-          background: rgba(255, 255, 255, 0.2) !important;
+        :global(.smart-tabs .nav-link.active) {
+          background: rgba(0, 246, 255, 0.2) !important;
           color: white !important;
+          box-shadow: 0 0 10px rgba(0, 246, 255, 0.3) !important;
         }
 
-        .tab-content {
+        .smart-tab-content {
           display: flex;
           flex-direction: column;
           align-items: center;
@@ -313,11 +431,11 @@ export function MobileCreatePage({ cardData, updateCardData, onPublish }: Mobile
         }
 
         .tab-icon {
-          font-size: 16px;
+          font-size: 14px;
         }
 
         .tab-text {
-          font-size: 10px;
+          font-size: 9px;
           font-weight: 600;
         }
 
@@ -325,35 +443,34 @@ export function MobileCreatePage({ cardData, updateCardData, onPublish }: Mobile
           color: #4ade80;
           font-size: 8px;
           position: absolute;
-          top: -2px;
-          right: -8px;
-          background: rgba(0, 0, 0, 0.3);
+          top: -4px;
+          right: -6px;
+          background: rgba(74, 222, 128, 0.2);
           border-radius: 50%;
           width: 12px;
           height: 12px;
           display: flex;
           align-items: center;
           justify-content: center;
+          border: 1px solid #4ade80;
         }
 
-        .mobile-form-container {
+        /* Form Content */
+        .form-content {
           flex: 1;
-          background: rgba(255, 255, 255, 0.05);
-          display: flex;
-          flex-direction: column;
-          /* Agregar padding inferior para compensar bottom navigation */
-          padding-bottom: 120px; /* 100px del bottom nav + 20px extra */
+          overflow-y: auto;
+          overflow-x: hidden;
         }
 
-        .mobile-navigation-bar {
+        /* Smart Navigation Bar */
+        .smart-navigation-bar {
           display: flex;
           justify-content: space-between;
           align-items: center;
           padding: 12px 16px;
           background: rgba(0, 0, 0, 0.8);
           backdrop-filter: blur(10px);
-          margin-top: auto;
-          /* Agregar safe area para dispositivos con notch/home indicator */
+          border-top: 1px solid rgba(255, 255, 255, 0.1);
           padding-bottom: calc(12px + env(safe-area-inset-bottom));
         }
 
@@ -364,90 +481,82 @@ export function MobileCreatePage({ cardData, updateCardData, onPublish }: Mobile
           font-weight: 600 !important;
           border-radius: 8px !important;
           font-size: 12px !important;
+          transition: all 0.3s ease !important;
         }
 
-        .preview-btn {
+        .nav-btn:disabled {
+          opacity: 0.5 !important;
+          cursor: not-allowed !important;
+        }
+
+        .nav-info {
           flex: 0.8;
+          text-align: center;
           margin: 0 8px;
-          padding: 10px 12px !important;
-          font-weight: 600 !important;
-          border-radius: 8px !important;
-          font-size: 12px !important;
         }
 
-        /* Estilos específicos para móvil - evitar superposiciones */
-        @media (max-width: 768px) {
-          .mobile-create-container {
-            /* Ajustar altura mínima considerando navegaciones */
-            min-height: calc(100vh - env(safe-area-inset-top) - env(safe-area-inset-bottom));
-            /* Compensar el navbar sticky superior */
-            margin-top: 0;
-            padding-top: 0;
-          }
-
-          .mobile-form-container {
-            /* Asegurar que el formulario tenga espacio suficiente */
-            padding-bottom: 140px; /* Más espacio para bottom nav */
-            min-height: calc(50vh - 80px); /* Al menos la mitad restante de la pantalla */
-          }
-
-          /* Asegurar que el último elemento sea visible */
-          .mobile-form-container > :last-child {
-            margin-bottom: 20px;
-          }
-
-          /* Mejorar el spacing del Container interno */
-          .mobile-form-container .container-fluid {
-            padding-bottom: 20px !important;
-            margin-bottom: 0 !important;
-          }
-
-          /* Asegurar que las alertas estén siempre visibles */
-          :global(.alert) {
-            position: relative !important;
-            z-index: 1000 !important;
-            margin-bottom: 1rem !important;
-          }
-
-          :global(.mobile-form-container .alert) {
-            position: relative !important;
-            z-index: 1000 !important;
-            margin-bottom: 1rem !important;
-          }
-
-          :global(.container-fluid .alert) {
-            position: relative !important;
-            z-index: 1000 !important;
-            margin-bottom: 1rem !important;
-          }
+        .completion-status {
+          font-size: 10px;
+          font-weight: 600;
+          color: white;
+          background: rgba(0, 0, 0, 0.3);
+          padding: 4px 8px;
+          border-radius: 12px;
+          border: 1px solid rgba(255, 255, 255, 0.2);
         }
 
-        /* Para dispositivos muy pequeños */
+        /* Responsive Adjustments */
         @media (max-width: 360px) {
-          .mobile-form-container {
-            padding-bottom: 160px; /* Aún más espacio en pantallas pequeñas */
-          }
-          
-          .mobile-preview-container {
-            top: 70px; /* Menos espacio en pantallas muy pequeñas */
-            height: calc(50vh - 70px);
+          .preview-section {
+            height: 35vh;
             min-height: 250px;
           }
-        }
 
-        /* Ajuste para pantallas medianas */
-        @media (min-width: 361px) and (max-width: 768px) {
-          .mobile-preview-container {
-            top: 80px; /* Espacio estándar para móvil */
+          .form-section {
+            height: 65vh;
+          }
+
+          .preview-title {
+            font-size: 12px;
+          }
+
+          .step-number, .step-title {
+            font-size: 12px;
           }
         }
 
-        /* Para tablets pequeños */
-        @media (min-width: 769px) and (max-width: 1024px) {
-          .mobile-preview-container {
-            top: 100px; /* Más espacio para tablets */
-            height: calc(50vh - 100px);
+        @media (min-width: 361px) and (max-width: 480px) {
+          .preview-section {
+            height: 38vh;
+            min-height: 270px;
           }
+
+          .form-section {
+            height: 62vh;
+          }
+        }
+
+        @media (min-width: 481px) and (max-width: 768px) {
+          .preview-section {
+            height: 40vh;
+            min-height: 300px;
+          }
+
+          .form-section {
+            height: 60vh;
+          }
+        }
+
+        /* Smooth Transitions */
+        .preview-content, .form-content {
+          scroll-behavior: smooth;
+        }
+
+        /* Estilos globales para alertas */
+        :global(.alert) {
+          position: relative !important;
+          z-index: 1000 !important;
+          margin-bottom: 1rem !important;
         }
       `}</style>
     </div>
