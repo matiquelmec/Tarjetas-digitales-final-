@@ -1305,9 +1305,9 @@ ${formattedAbout ? `${formattedAbout}
               <div className="indi-photo-container">
                 <div style={{ 
                   position: 'relative',
-                  // Foto más pequeña y menos dominante para mejor balance
-                  width: isPreviewMode ? '80px' : isMobile ? '90px' : '100px', 
-                  height: isPreviewMode ? '80px' : isMobile ? '90px' : '100px',
+                  // Foto más grande para llenar mejor el espacio
+                  width: isPreviewMode ? '100px' : isMobile ? '120px' : '130px',
+                  height: isPreviewMode ? '100px' : isMobile ? '120px' : '130px',
                   overflow: 'hidden',
                   borderRadius: template === 'creative' ? '50%' : templateStyles.photoStyle?.borderRadius || '50%',
                   border: `2px solid var(--card-text-color)`, // Border más sutil
@@ -1319,12 +1319,10 @@ ${formattedAbout ? `${formattedAbout}
                     alt="Foto del Profesional"
                     fill
                     style={{
-                      objectFit: 'contain',
-                      objectPosition: 'center center',
-                      width: '100%',
-                      height: '100%'
+                      objectFit: 'cover',
+                      objectPosition: 'center center'
                     }}
-                    sizes="120px"
+                    sizes="(max-width: 768px) 120px, (max-width: 1200px) 130px, 140px"
                     priority={false}
                     placeholder="blur"
                     blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEAYABgAAD/2wBDAAoHBwgHBgoICAgLCgoLDhgQDg0NDh0VFhEYIx8lJCIfIiEmKzcvJik0KSEiMEExNDk7Pj4+JS5ESUM8SDc9Pjv/2wBDAQoLCw4NDhwQEBw7KCIoOzs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozv/wAARCAABAAEDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAX/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwCdABmX/9k="
