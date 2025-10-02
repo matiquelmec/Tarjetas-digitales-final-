@@ -1319,7 +1319,7 @@ ${formattedAbout ? `${formattedAbout}
                   width: isPreviewMode ? '100px' : isMobile ? '120px' : '130px',
                   height: isPreviewMode ? '100px' : isMobile ? '120px' : '130px',
                   overflow: 'hidden',
-                  borderRadius: template === 'creative' ? '50%' : templateStyles.photoStyle?.borderRadius || '50%',
+                  borderRadius: '50%',
                   border: `2px solid var(--card-text-color)`, // Border más sutil
                   boxShadow: DesignTokens.effects.shadows.photo,
                   opacity: 0.95
@@ -1334,7 +1334,7 @@ ${formattedAbout ? `${formattedAbout}
                       objectPosition: 'center 30%',
                       width: '100%',
                       height: '100%',
-                      borderRadius: 'inherit'
+                      borderRadius: '50%'
                     }}
                     sizes="(max-width: 768px) 120px, (max-width: 1200px) 130px, 140px"
                     priority={true}
