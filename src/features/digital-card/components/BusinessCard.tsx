@@ -376,9 +376,18 @@ export default function BusinessCard({
   enableMouseTracking = false, mouseTrackingSensitivity = 1.0, enableMouseGlow = true, enableMouseTilt = true, enableMouseParticles = false 
 }: BusinessCardProps) {
   const [qrCodeValue, setQrCodeValue] = useState('');
+  const [isMobile, setIsMobile] = useState(false);
 
   // 🎨 INDI DESIGN SYSTEM - AUTO-OPTIMIZACIÓN VISUAL
-  const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
   
   // Colores optimizados automáticamente para contraste perfecto
   const optimizedColors = useOptimizedColors(cardTextColor, cardBackgroundColor, true);
