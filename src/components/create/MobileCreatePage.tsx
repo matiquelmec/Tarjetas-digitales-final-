@@ -130,7 +130,7 @@ export function MobileCreatePage({ cardData, updateCardData, onPublish }: Mobile
     <div className="mobile-smart-layout">
 
       {/* Navegación unificada con IndiNavbar */}
-      <IndiNavbar variant="solid" position="sticky" showActions={true} />
+      <IndiNavbar variant="solid" position="sticky" showActions={false} />
 
       {/* SPLIT SCREEN LAYOUT */}
       <div className="split-screen-container">
