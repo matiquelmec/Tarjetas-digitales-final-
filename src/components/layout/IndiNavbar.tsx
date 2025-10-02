@@ -216,9 +216,15 @@ const IndiNavbar: React.FC<IndiNavbarProps> = ({
         
         @media (max-width: 768px) {
           .indi-navbar-container {
-            padding: 0.25rem 0; /* Mobile compact navbar */
+            padding: 0.1rem 0; /* Minimal mobile padding */
           }
-          
+
+          /* Logo más compacto en móvil */
+          .logo-container {
+            margin: 0 !important;
+            padding: 0 !important;
+          }
+
           /* Ocultar botones superiores en móvil */
           .nav-actions-fixed-right {
             display: none !important;
