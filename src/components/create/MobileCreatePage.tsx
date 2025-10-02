@@ -235,7 +235,7 @@ export function MobileCreatePage({ cardData, updateCardData, onPublish }: Mobile
           </div>
 
           {/* Navegación Inferior Integrada */}
-          <div className="form-navigation-bar">
+          <div className="form-navigation-bar" style={{background: 'red', border: '2px solid yellow', minHeight: '60px'}}>
             <Button
               variant="outline-light"
               disabled={!canGoPrev}
@@ -357,6 +357,7 @@ export function MobileCreatePage({ cardData, updateCardData, onPublish }: Mobile
           backdrop-filter: blur(5px);
           position: relative;
           z-index: 1;
+          overflow: visible;
         }
 
         /* Progress Header */
