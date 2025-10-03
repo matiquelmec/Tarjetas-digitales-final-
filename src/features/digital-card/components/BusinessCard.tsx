@@ -1313,25 +1313,28 @@ ${formattedAbout ? `${formattedAbout}
             {/* 🎨 HEADER SECTION - Máximo Impacto Visual */}
             <div className="indi-section header-section">
               <div className="indi-photo-container">
-                <div style={{ 
+                <div style={{
                   position: 'relative',
-                  // Foto más grande para llenar mejor el espacio
-                  width: isPreviewMode ? '100px' : isMobile ? '120px' : '130px',
-                  height: isPreviewMode ? '100px' : isMobile ? '120px' : '130px',
+                  // Tamaños optimizados: preview más grande para mejor visibilidad
+                  width: isPreviewMode ? '110px' : isMobile ? '120px' : '130px',
+                  height: isPreviewMode ? '110px' : isMobile ? '120px' : '130px',
                   overflow: 'hidden',
                   borderRadius: '50%',
-                  border: `2px solid var(--card-text-color)`, // Border más sutil
+                  border: `2px solid var(--card-text-color)`,
                   boxShadow: DesignTokens.effects.shadows.photo,
-                  opacity: 0.95
+                  opacity: 0.95,
+                  // Centrado perfecto en preview
+                  margin: isPreviewMode ? '0 auto' : '0 auto'
                 }}>
                   <Image
                     src={photoUrl}
                     alt="Foto del Profesional"
-                    width={isPreviewMode ? 100 : isMobile ? 120 : 130}
-                    height={isPreviewMode ? 100 : isMobile ? 120 : 130}
+                    width={isPreviewMode ? 110 : isMobile ? 120 : 130}
+                    height={isPreviewMode ? 110 : isMobile ? 120 : 130}
                     style={{
                       objectFit: 'cover',
-                      objectPosition: 'center 30%',
+                      // Posicionamiento inteligente: centrado perfecto en preview, ligeramente arriba en full
+                      objectPosition: isPreviewMode ? 'center center' : 'center 40%',
                       width: '100%',
                       height: '100%',
                       borderRadius: '50%'
