@@ -182,10 +182,26 @@ export default function HomePage() {
           transform: translateY(20px);
           transition: all 0.6s ease;
         }
-        
+
         .demo-container.show {
           opacity: 1;
           transform: translateY(0);
+        }
+
+        /* Animación suave para el desplegable */
+        .demo-container {
+          animation: slideInUp 0.6s ease-out forwards;
+        }
+
+        @keyframes slideInUp {
+          from {
+            opacity: 0;
+            transform: translateY(30px) scale(0.95);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+          }
         }
         
         .demo-label {
@@ -312,32 +328,56 @@ export default function HomePage() {
           margin: 0 auto;
         }
         
+        /* Preview Mode Optimizations */
+        .preview-mode .hologram-container {
+          height: auto !important;
+          min-height: 500px;
+        }
+
+        .preview-mode .business-card-custom {
+          max-width: 380px !important;
+          width: 90% !important;
+          margin: 0 auto !important;
+          box-shadow: 0 12px 40px rgba(0, 246, 255, 0.2), 0 6px 20px rgba(0, 0, 0, 0.1) !important;
+          transform: scale(1) !important;
+        }
+
+        .preview-mode .preview-container {
+          padding: 1.5rem !important;
+          min-height: 500px !important;
+        }
+
         /* Mobile Optimizations */
         @media (max-width: 768px) {
           .hero-section {
             padding: 2rem 0 1rem;
           }
-          
+
           .hero-title {
             font-size: 2rem;
             margin-bottom: 1rem;
           }
-          
+
           .hero-subtitle {
             font-size: 1.1rem;
           }
-          
+
           .demo-container {
             padding: 1rem 0;
           }
-          
+
           .benefit-card {
             margin-bottom: 1.5rem;
           }
-          
+
           .cta-primary {
             width: 100%;
             max-width: 300px;
+          }
+
+          .preview-mode .business-card-custom {
+            max-width: 320px !important;
+            width: 95% !important;
           }
         }
       `}} />
@@ -393,7 +433,7 @@ export default function HomePage() {
             {/* Demo Container - Aparece/Desaparece */}
             {showDemo && (
               <Row className="justify-content-center">
-                <Col lg={8} xl={6}>
+                <Col lg={10} xl={8}>
                     <HologramPreview
                       mode="basic"
                       showBeam={false}
@@ -404,6 +444,8 @@ export default function HomePage() {
                       subtitle="Misma tarjeta que verás en el editor"
                       pageBackgroundColor={demoCardData.pageBackgroundColor}
                       className="preview-mode"
+                      autoHeight={true}
+                      height="auto"
                     >
                       <BusinessCard
                       name={demoCardData.name}

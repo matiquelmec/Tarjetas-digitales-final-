@@ -15,6 +15,7 @@ interface HologramPreviewProps {
   className?: string;
   pageBackgroundColor?: string;
   height?: string; // Nueva prop para controlar altura
+  autoHeight?: boolean; // Altura automática basada en contenido
 }
 
 export default function HologramPreview({
@@ -28,7 +29,8 @@ export default function HologramPreview({
   subtitle = 'Vista en tiempo real',
   className = '',
   pageBackgroundColor = '#1a1a2e', // Usar fondo moderno consistente
-  height = '85vh' // Default height, puede ser sobrescrito
+  height = 'auto', // Cambiado a auto para adaptarse al contenido
+  autoHeight = true // Activar altura automática por defecto
 }: HologramPreviewProps) {
   
   // Debug para rastrear cambios de color de fondo
@@ -84,14 +86,20 @@ export default function HologramPreview({
   };
 
   return (
-    <div style={{ position: 'sticky', top: '20px', height: height }}>
+    <div style={{
+      position: 'sticky',
+      top: '20px',
+      height: autoHeight ? 'auto' : height,
+      minHeight: autoHeight ? '500px' : height
+    }}>
       <Card
         className={`glass-card text-white ${!title ? 'no-title-hologram' : ''}`}
         style={{
           backgroundColor: 'transparent',
           background: 'transparent',
           border: 'none',
-          height: '100%',
+          height: autoHeight ? 'auto' : '100%',
+          minHeight: autoHeight ? '500px' : '100%',
           display: 'flex',
           flexDirection: 'column'
         }}
@@ -111,7 +119,7 @@ export default function HologramPreview({
         <Card.Body
           className="preview-body p-0"
           style={{
-            flex: 1,
+            flex: autoHeight ? 'none' : 1,
             position: 'relative',
             scrollBehavior: 'smooth',
             backgroundColor: 'transparent', // Dejar que BusinessCard maneje el fondo
@@ -119,21 +127,23 @@ export default function HologramPreview({
             flexDirection: 'column',
             transition: 'background-color 0.3s ease',
             borderRadius: '0 0 12px 12px',
-            overflow: 'hidden'
+            overflow: autoHeight ? 'visible' : 'hidden',
+            minHeight: autoHeight ? '450px' : 'auto'
           }}
         >
           <div className="preview-container" style={{
             position: 'relative',
             display: 'flex',
             justifyContent: 'center',
-            alignItems: 'center',
+            alignItems: autoHeight ? 'flex-start' : 'center',
             padding: '1rem',
             margin: '0',
-            flex: 1,
+            flex: autoHeight ? 'none' : 1,
             width: '100%',
             // Dejar que BusinessCard maneje su propio fondo
             backgroundColor: 'transparent',
-            overflow: 'visible'
+            overflow: 'visible',
+            minHeight: autoHeight ? '450px' : 'auto'
           }}>
             {showScanlines && (
               <div className="demo-label" style={{
